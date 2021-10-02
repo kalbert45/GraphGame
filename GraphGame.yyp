@@ -7,6 +7,7 @@
     {"id":{"name":"graph_draw","path":"scripts/graph_draw/graph_draw.yy",},"order":4,},
     {"id":{"name":"room_levelselect","path":"rooms/room_levelselect/room_levelselect.yy",},"order":2,},
     {"id":{"name":"graph_destroy","path":"scripts/graph_destroy/graph_destroy.yy",},"order":3,},
+    {"id":{"name":"spr_cursor","path":"sprites/spr_cursor/spr_cursor.yy",},"order":2,},
     {"id":{"name":"graph_add_node","path":"scripts/graph_add_node/graph_add_node.yy",},"order":1,},
     {"id":{"name":"spr_vertex","path":"sprites/spr_vertex/spr_vertex.yy",},"order":0,},
     {"id":{"name":"create_level1","path":"scripts/create_level1/create_level1.yy",},"order":0,},

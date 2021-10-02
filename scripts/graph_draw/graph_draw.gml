@@ -26,7 +26,7 @@ function graph_draw(graph){
 				var vert_k = graph[? k];
 				var vert_j = graph[? j];
 				if (global.cleared) {
-					draw_set_color(c_blue);	
+					draw_set_color(c_aqua);	
 				}
 				else {
 					draw_set_color(c_orange);

@@ -1,7 +1,7 @@
 // Init local variables and calculations
 var range = 16; // Distance (in pixels) mouse must be from center of object before scaling begins
 var min_scale = 1; // Minimum scale
-var max_scale = 1.5; // Maximum scale
+var max_scale = 1.3; // Maximum scale
 var mouse_hover = point_distance(x, y, mouse_x, mouse_y) <= range; // Check if mouse is hovering
 if (global.selected == id) { // stay big if selected
 	var goal_scale = max_scale; // Calculate goal scale
