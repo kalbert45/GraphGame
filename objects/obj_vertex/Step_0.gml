@@ -45,20 +45,27 @@ else if (mouse_hover) {
 		// check if front endpoint
 		else if (obj_game.act_line[| 0] == id) {
 			id.activated = false;
+			var deselect = ds_list_find_value(obj_game.act_line, 0);
 			ds_list_delete(obj_game.act_line, 0); // delete endpoint
-			var v_next = ds_list_find_value(obj_game.act_line, 0); // replacement endpoint
-			graph_rm_act_edge(obj_game.graph, label, v_next.label);
+			
+			var v_prev = ds_list_find_value(obj_game.act_line, 0); // replacement endpoint
+			graph_rm_act_edge(obj_game.graph, label, v_prev.label);
 			obj_game.act_edge_count--;
-			global.selected = v_next;
+			global.selected = v_prev;
+			global.selected.v_prev_deselect = deselect;
 		}
 		// check if back endpoint
 		else if (obj_game.act_line[| ds_list_size(obj_game.act_line)-1] == id) {
 			id.activated = false;
+			var deselect = ds_list_find_value(obj_game.act_line, ds_list_size(obj_game.act_line)-1);
 			ds_list_delete(obj_game.act_line, ds_list_size(obj_game.act_line)-1); // delete endpoint
+			
+			
 			var v_prev = ds_list_find_value(obj_game.act_line, ds_list_size(obj_game.act_line)-1); // replacement endpoint
 			graph_rm_act_edge(obj_game.graph, label, v_prev.label);
 			obj_game.act_edge_count--;
 			global.selected = v_prev;
+			global.selected.v_prev_deselect = deselect;
 		}
 	}
 	// left click activates vertex and mouse, selects vertex
@@ -79,6 +86,7 @@ else if (mouse_hover) {
 		// only activate unactivated vertices and edges adjacent to selected vertex
 		if (!id.activated && graph_check_adjacent(obj_game.graph, id)) {
 			graph_add_act_edge(obj_game.graph, global.selected.label, label);
+			v_prev_deselect = undefined;
 			obj_game.act_edge_count++;
 			if (global.selected == obj_game.act_line[| 0]) {
 				ds_list_insert(obj_game.act_line, 0, id);
@@ -100,6 +108,7 @@ else if (mouse_hover) {
 	if (mouse_check_button(mb_left)) {
 		if (!id.activated && graph_check_adjacent(obj_game.graph, id)) {
 			graph_add_act_edge(obj_game.graph, global.selected.label, label);
+			v_prev_deselect = undefined;
 			obj_game.act_edge_count++;
 			if (global.selected == obj_game.act_line[| 0]) {
 				ds_list_insert(obj_game.act_line, 0, id);
