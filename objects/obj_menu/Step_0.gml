@@ -1,7 +1,7 @@
 /// @description check selection
 if (room == room_start) {
 	if (select == 0) { // level select
-		room_goto(room_levelselect);
+		transition_start(room_levelselect, sq_fadeout, sq_fadein);
 	}
 	else if (select == 1) { // options submenu
 		if (camera_curve_pos < 1) {

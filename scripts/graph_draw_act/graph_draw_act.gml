@@ -1,5 +1,5 @@
-// draws edges for the graph
-// takes the graph (ds_map) as the sole argument
+// draws activated edges for the graph
+// takes the graph (ds_map) and animation curve structure for the lines as arguments
 function graph_draw_act(graph, line_curve_struct){
 	// if empty, do nothing
 	if (ds_map_empty(graph)) {
@@ -25,25 +25,24 @@ function graph_draw_act(graph, line_curve_struct){
 			var diff_y = vert_j.y - vert_k.y;
 				
 			if (global.cleared) {
-				draw_set_color(c_aqua);	
+				draw_set_color(c_lime);	
 				var line_x = vert_j.x;
 				var line_y = vert_j.y;
 			}
 			else {
 				var curveChannel = animcurve_get_channel(line_curve_struct, "EaseIn");
 				var val = animcurve_channel_evaluate(curveChannel, vert_j.line_curve_pos);
-			
-				draw_set_color(c_orange);
 					
 				var line_x = vert_k.x + (diff_x * val);
 				var line_y = vert_k.y + (diff_y * val);
+				
+				draw_set_color(c_orange);
 			}
 			draw_line_width(vert_k.x, vert_k.y, line_x, line_y, 7);
 		}
 	}
 	
 	// draw lingering line on deselect
-	
 	if (!is_undefined(global.selected) && !is_undefined(global.selected.v_prev_deselect)) {
 		var vert_k = global.selected;
 		var vert_j = global.selected.v_prev_deselect;
@@ -53,14 +52,11 @@ function graph_draw_act(graph, line_curve_struct){
 		
 		var curveChannel = animcurve_get_channel(line_curve_struct, "EaseBack");
 		var val = animcurve_channel_evaluate(curveChannel, vert_j.line_curve_pos);
-			
-		show_debug_message(val);
-			
-		draw_set_color(c_orange);
 		
 		var line_x = vert_k.x + (diff_x * val);
 		var line_y = vert_k.y + (diff_y * val);
 	
+		draw_set_color(c_orange);
 		draw_line_width(vert_k.x, vert_k.y, line_x, line_y, 7);
 	}
 }

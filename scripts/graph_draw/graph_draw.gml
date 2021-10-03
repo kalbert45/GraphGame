@@ -21,7 +21,7 @@ function graph_draw(graph){
 			// get instances corresponding to labels
 			var vert_k = graph[? k];
 			var vert_j = graph[? j];
-			draw_set_color(c_ltgrey);
+			draw_set_color(c_dkgrey);
 			draw_line_width(vert_k.x, vert_k.y, vert_j.x, vert_j.y, 5);
 		}
 	}

@@ -15,7 +15,7 @@ if (room == room_start) {
 	// draw title
 	draw_set_font(TitleFont);
 	draw_set_color(c_black);
-	draw_text(title_x - 5, title_y + 5, title);
+	draw_text(title_x - 10, title_y + 7, title);
 	draw_set_color(c_orange);
 	draw_text(title_x, title_y, title);
 	
@@ -77,6 +77,7 @@ if (room == room_start) {
 	}
 }
 
+// draw level select menu
 else if (room == room_levelselect) { // temp
 	draw_set_color(c_white);
 	draw_text(100, 100, "BACK");
@@ -92,9 +93,9 @@ else if (room == room_levelselect) { // temp
 	
 	var mouse_hover = mouse_y > button_level1.y && mouse_y < button_level1.y + 
 								button_level1.h && mouse_x < button_level1.wr && mouse_x > button_level1.wl;
-								
+		//temporary code						
 	if (mouse_hover && mouse_check_button_pressed(mb_left)) {
-		room_goto(room_level1);
+		transition_start(room_level1, sq_fadeout, sq_fadein);
 	}
 	
 	draw_set_color(c_white);
