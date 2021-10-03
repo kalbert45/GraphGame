@@ -6,7 +6,7 @@
     "path": "folders/Scripts/Graph scripts/Activated vertices scripts.yy",
   },
   "resourceVersion": "1.0",
-  "name": "graph_rm_act_edge",
+  "name": "graph_draw_act",
   "tags": [],
   "resourceType": "GMScript",
 }

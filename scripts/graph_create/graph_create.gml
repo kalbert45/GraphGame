@@ -4,7 +4,9 @@ function graph_create(){
 	var graph = ds_map_create();
 	var adj_map = ds_map_create();
 	var act_adj_map = ds_map_create();
+	var act_adj_map_dup = ds_map_create(); // potentially temporary ; needed for deselect animation
 	ds_map_add_map(graph, "adj", adj_map);
 	ds_map_add_map(graph, "act_adj", act_adj_map);
+	ds_map_add_map(graph, "act_adj_dup", act_adj_map_dup);
 	return graph;
 }

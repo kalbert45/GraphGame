@@ -20,7 +20,12 @@ else {
 }
 image_xscale = lerp(image_xscale, goal_scale, scale_spd);
 image_yscale = lerp(image_yscale, goal_scale, scale_spd);
-
+if (id.activated && line_curve_pos < 1) {
+	line_curve_pos += obj_game.line_curve_speed;
+}
+else if (!id.activated && line_curve_pos > 0) {
+	line_curve_pos -= obj_game.line_curve_speed;
+}
 // on click functions
 if (global.cleared) {
 	image_index = 2;
@@ -73,7 +78,7 @@ else if (mouse_hover) {
 		}
 		// only activate unactivated vertices and edges adjacent to selected vertex
 		if (!id.activated && graph_check_adjacent(obj_game.graph, id)) {
-			graph_add_act_edge(obj_game.graph, label, global.selected.label);
+			graph_add_act_edge(obj_game.graph, global.selected.label, label);
 			obj_game.act_edge_count++;
 			if (global.selected == obj_game.act_line[| 0]) {
 				ds_list_insert(obj_game.act_line, 0, id);
@@ -94,7 +99,7 @@ else if (mouse_hover) {
 	// only if its adjacent to selected
 	if (mouse_check_button(mb_left)) {
 		if (!id.activated && graph_check_adjacent(obj_game.graph, id)) {
-			graph_add_act_edge(obj_game.graph, label, global.selected.label);
+			graph_add_act_edge(obj_game.graph, global.selected.label, label);
 			obj_game.act_edge_count++;
 			if (global.selected == obj_game.act_line[| 0]) {
 				ds_list_insert(obj_game.act_line, 0, id);

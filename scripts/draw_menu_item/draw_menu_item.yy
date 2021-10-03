@@ -6,7 +6,7 @@
     "path": "folders/Scripts/Animation scripts.yy",
   },
   "resourceVersion": "1.0",
-  "name": "select_menu_shade",
+  "name": "draw_menu_item",
   "tags": [],
   "resourceType": "GMScript",
 }

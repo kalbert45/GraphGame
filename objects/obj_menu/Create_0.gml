@@ -5,14 +5,26 @@ ds_map_add(set, "SFX Volume", [5, [0,10]]);
 ds_map_add(set, "Music Volume", [5, [0,10]]);
 
 /// @description variables
-curveAsset = EaseCurves; // ease curve for camera
+curveAsset = EaseCurves; // ease curve
 curveStruct = animcurve_get(curveAsset);
-curvePosition = 0;
-curveSpeed = 0.016;
+
+camera_curve_pos = 0;
+camera_curve_speed = 0.016;
+
+menu_shade_curve_pos[2] = 0;
+submenu_shade_curve_pos[3] = 0;
+menu_shade_curve_speed = 0.05;
 
 select = -1; // selected menu option
 
 menu_control = true; // player control of menu
+
+menu_shade = 0.6; // controls shade of menu options
+uni_shade = shader_get_uniform(FontShader, "shade");
+
+title = "PATHS";
+title_x = 960;
+title_y = 360;
 
 menu[2] = "Quit";
 menu[1] = "Options";

@@ -13,3 +13,7 @@ else {
 
 cursor_sprite = spr_cursor;
 
+line_curve_asset = EaseCurves; // ease curve
+line_curve_struct = animcurve_get(line_curve_asset);
+
+line_curve_speed = 0.016;
