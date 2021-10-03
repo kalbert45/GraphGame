@@ -1,5 +1,5 @@
 /// draw graph
-if (room != room_start) {
+if (room != room_start && room != room_levelselect) {
 	graph_draw(graph);
 }
 

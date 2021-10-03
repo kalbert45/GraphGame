@@ -1,4 +1,3 @@
-global.settings = undefined; // to-do
 
 // fix gui display
 #macro RES_W 1920
