@@ -17,3 +17,5 @@ line_curve_asset = EaseCurves; // ease curve
 line_curve_struct = animcurve_get(line_curve_asset);
 
 line_curve_speed = 0.016;
+
+audio_play_sound(BGM_temp, -1, true);

@@ -39,6 +39,7 @@ if (room == room_start) {
 	
 		if (mouse_hover && menu_control) {
 			if (mouse_check_button_pressed(mb_left)) { // click to select
+					play_menu_select_sfx();
 					select = i;
 					menu_control = false;
 				}
@@ -70,6 +71,7 @@ if (room == room_start) {
 		submenu_shade_curve_pos[j] = draw_menu_item(sub_xx, sub_yy, sub_txt, options_button_menu[j], curveStruct, submenu_shade_curve_pos[j], menu_shade_curve_speed, uni_shade, menu_shade, sub_mouse_hover, min_scale, max_scale, scale_spd);
 		if (sub_mouse_hover && menu_control) {
 			if (mouse_check_button_pressed(mb_left)) {
+				play_menu_select_sfx();
 				select = -1;
 				menu_control = false;
 			}

@@ -15,14 +15,14 @@ menu_shade_curve_pos[2] = 0;
 submenu_shade_curve_pos[3] = 0;
 menu_shade_curve_speed = 0.05;
 
-select = -1; // selected menu option
+select = -1; // selected menu option, -1 means nothing selected
 
 menu_control = true; // player control of menu
 
 menu_shade = 0.6; // controls shade of menu options
 uni_shade = shader_get_uniform(FontShader, "shade");
 
-title = "PATHS";
+title = "GRAPH GAME";
 title_x = 960;
 title_y = 360;
 

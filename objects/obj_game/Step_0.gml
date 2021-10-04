@@ -26,3 +26,9 @@ else if (win_con == "euler") {
 	}
 }
 
+if (global.cleared == true) {
+	if (!clear_audio_played) {
+		clear_audio_played = true;
+		audio_play_sound(clear_sfx, 0, false);
+	}
+}

@@ -6,20 +6,20 @@ function create_level1(){
 	
 	var graph = graph_create();
 
-	graph_add_node(graph, 400, 100, 0);
-	graph_add_node(graph, 1000, 100, 1);
-	graph_add_node(graph, 1000, 700, 2);
-	graph_add_node(graph, 400, 700, 3);
-	graph_add_node(graph, 600, 650, 4);
-	graph_add_node(graph, 900, 600, 5);
-	graph_add_node(graph, 450, 500, 6);
-	graph_add_node(graph, 500, 200, 7);
-	graph_add_node(graph, 800, 150, 8);
-	graph_add_node(graph, 950, 300, 9);
-	graph_add_node(graph, 750, 450, 10);
-	graph_add_node(graph, 650, 450, 11);
-	graph_add_node(graph, 650, 350, 12);
-	graph_add_node(graph, 750, 350, 13);
+	graph_add_node(graph, 660, 190, 0);
+	graph_add_node(graph, 1260, 190, 1);
+	graph_add_node(graph, 1260, 790, 2);
+	graph_add_node(graph, 660, 790, 3);
+	graph_add_node(graph, 860, 740, 4);
+	graph_add_node(graph, 1160, 690, 5);
+	graph_add_node(graph, 710, 590, 6);
+	graph_add_node(graph, 760, 290, 7);
+	graph_add_node(graph, 1060, 240, 8);
+	graph_add_node(graph, 1210, 390, 9);
+	graph_add_node(graph, 1010, 540, 10);
+	graph_add_node(graph, 910, 540, 11);
+	graph_add_node(graph, 910, 440, 12);
+	graph_add_node(graph, 1010, 440, 13);
 
 	graph_add_edge(graph, 0, 1);
 	graph_add_edge(graph, 1, 2);

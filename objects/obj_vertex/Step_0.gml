@@ -73,6 +73,7 @@ else if (mouse_hover) {
 	if (mouse_check_button_pressed(mb_left)) {
 		// select vertex if none are selected
 		if (ds_list_empty(obj_game.act_line)) {
+			play_graph_sfx();
 			id.activated = true;
 			global.selected = id;
 			global.mouse_activated = true;
@@ -94,6 +95,7 @@ else if (mouse_hover) {
 			else {
 				ds_list_add(obj_game.act_line, id);
 			}
+			play_graph_sfx();
 			id.activated = true;
 			global.selected = id;
 			global.mouse_activated = true;
@@ -116,6 +118,7 @@ else if (mouse_hover) {
 			else {
 				ds_list_add(obj_game.act_line, id);
 			}
+			play_graph_sfx();
 			id.activated = true;
 			global.selected = id;
 		}

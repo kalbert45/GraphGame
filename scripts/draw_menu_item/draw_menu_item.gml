@@ -5,6 +5,10 @@ function draw_menu_item(xx, yy, txt, button, curveStruct, curve_pos, curve_speed
 	var goal_scale = (min_scale * !mouse_hover) + (max_scale * mouse_hover); // Calculate goal scale
 	
 	if (mouse_hover && obj_menu.menu_control) {
+		if (curve_pos == curve_speed) { // hacky way to play sound once
+			audio_play_sound(menu_hover, 0, false);
+		}
+		
 		if (curve_pos < 1) {
 			curve_pos += curve_speed;
 		}
@@ -22,6 +26,7 @@ function draw_menu_item(xx, yy, txt, button, curveStruct, curve_pos, curve_speed
 		shader_reset();
 		}
 	else {
+		
 		if (curve_pos > 0) {
 			curve_pos -= curve_speed;
 		}
