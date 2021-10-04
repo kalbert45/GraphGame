@@ -2,7 +2,8 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function create_level2(){
 	obj_game.win_num = 9;
-	obj_game.win_con = "euler"
+	obj_game.win_con = "euler";
+	obj_game.max_degree = 4;
 	
 	var graph = graph_create();
 
@@ -24,5 +25,5 @@ function create_level2(){
 	graph_add_edge(graph, 4, 5);
 	
 	
-	return graph
+	return graph;
 }

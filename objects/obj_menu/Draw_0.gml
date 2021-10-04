@@ -6,7 +6,6 @@ if (room == room_start) {
 	// line spacing
 	var gap = 120
 	
-	
 	// variables for lerp
 	var min_scale = 1; // Minimum scale
 	var max_scale = 1.3; // Maximum scale
@@ -97,7 +96,7 @@ else if (room == room_levelselect) { // temp
 								button_level1.h && mouse_x < button_level1.wr && mouse_x > button_level1.wl;
 		//temporary code						
 	if (mouse_hover && mouse_check_button_pressed(mb_left)) {
-		transition_start(room_level1, sq_fadeout, sq_fadein);
+		transition_start(room_level2, sq_fadeout, sq_fadein);
 	}
 	
 	draw_set_color(c_white);

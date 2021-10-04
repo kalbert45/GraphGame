@@ -2,7 +2,7 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function create_level1(){
 	obj_game.win_num = 14;
-	obj_game.win_con = "hamiltonian"
+	obj_game.win_con = "hamiltonian";
 	
 	var graph = graph_create();
 
@@ -47,5 +47,5 @@ function create_level1(){
 	graph_add_edge(graph, 13, 12);
 	graph_add_edge(graph, 10, 13);
 	
-	return graph
+	return graph;
 }
