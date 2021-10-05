@@ -30,11 +30,20 @@ function graph_draw_act(graph, line_curve_struct){
 				var line_y = vert_j.y;
 			}
 			else {
-				var curveChannel = animcurve_get_channel(line_curve_struct, "EaseIn");
+				var curveChannel = animcurve_get_channel(line_curve_struct, "Line");
 				
 				var index = ds_list_find_index(vert_j.inbound_v, vert_k.label);
-				
-				var val = animcurve_channel_evaluate(curveChannel, vert_j.line_curve_pos[index]);
+				if (index == -1) {
+					show_debug_message("index is -1");
+					continue;
+				}
+				else if (index < array_length(vert_j.line_curve_pos)) {
+					var val = animcurve_channel_evaluate(curveChannel, vert_j.line_curve_pos[index]);
+				}
+				else {
+					show_debug_message("error. index: " + string(index));
+					var val = 1;	
+				}
 				
 				var line_x = vert_k.x + (diff_x * val);
 				var line_y = vert_k.y + (diff_y * val);
@@ -46,14 +55,14 @@ function graph_draw_act(graph, line_curve_struct){
 	}
 	
 	// draw lingering line on deselect
-	if (!is_undefined(global.selected) && !is_undefined(global.selected.v_prev_deselect)) {
+	if (!is_undefined(global.selected) && !is_undefined(global.v_prev_deselect)) {
 		var vert_k = global.selected;
-		var vert_j = global.selected.v_prev_deselect;
+		var vert_j = global.v_prev_deselect;
 		
 		var diff_x = vert_j.x - vert_k.x;
 		var diff_y = vert_j.y - vert_k.y;
 		
-		var curveChannel = animcurve_get_channel(line_curve_struct, "EaseBack");
+		var curveChannel = animcurve_get_channel(line_curve_struct, "Line");
 		if (vert_j.activated < array_length(vert_j.line_curve_pos)) {
 			var val = animcurve_channel_evaluate(curveChannel, vert_j.line_curve_pos[vert_j.activated]);
 		}

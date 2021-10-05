@@ -18,6 +18,6 @@ graph = undefined;
 line_curve_asset = EaseCurves; // ease curve
 line_curve_struct = animcurve_get(line_curve_asset);
 
-line_curve_speed = 0.016;
+line_curve_speed = 0.025;
 
 audio_play_sound(BGM, -1, true);
