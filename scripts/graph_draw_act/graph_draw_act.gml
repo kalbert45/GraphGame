@@ -17,22 +17,40 @@ function graph_draw_act(graph, line_curve_struct){
 			var j = 0;
 			j = act_adj_list[| i];
 	
-			// get instances corresponding to labels k->j
 			var vert_k = graph[? k];
 			var vert_j = graph[? j];
-			
-			var diff_x = vert_j.x - vert_k.x;
-			var diff_y = vert_j.y - vert_k.y;
-				
+			// get instances corresponding to labels k->j
+			// if cleared, draw all lime
 			if (global.cleared) {
 				draw_set_color(c_lime);	
-				var line_x = vert_j.x;
-				var line_y = vert_j.y;
+				draw_line_width(vert_k.x, vert_k.y, vert_j.x, vert_j.y, 7);
 			}
-			else {
+			// if k is at front, draw from j to k
+			else if (obj_game.act_line[| 0].label == k) {
+				var diff_x = vert_k.x - vert_j.x;
+				var diff_y = vert_k.y - vert_j.y;
+				
 				var curveChannel = animcurve_get_channel(line_curve_struct, "Line");
 				
-				var index = ds_list_find_index(vert_j.inbound_v, vert_k.label);
+				
+				var val = animcurve_channel_evaluate(curveChannel, vert_k.line_curve_pos[i]);
+				
+				
+				var line_x = vert_j.x + (diff_x * val);
+				var line_y = vert_j.y + (diff_y * val);
+				
+				draw_set_color(c_orange);
+			
+				draw_line_width(vert_j.x, vert_j.y, line_x, line_y, 7);				
+			}
+			// if k is at back, draw k to j
+			else if (obj_game.act_line[| ds_list_size(obj_game.act_line)-1].label == j){
+				var diff_x = vert_j.x - vert_k.x;
+				var diff_y = vert_j.y - vert_k.y;
+				
+				var curveChannel = animcurve_get_channel(line_curve_struct, "Line");
+				
+				var index = ds_list_find_index(vert_j.inbound_v, k);
 				if (index == -1) {
 					show_debug_message("index is -1");
 					continue;
@@ -49,8 +67,14 @@ function graph_draw_act(graph, line_curve_struct){
 				var line_y = vert_k.y + (diff_y * val);
 				
 				draw_set_color(c_orange);
+			
+				draw_line_width(vert_k.x, vert_k.y, line_x, line_y, 7);
 			}
-			draw_line_width(vert_k.x, vert_k.y, line_x, line_y, 7);
+			// otherwise, just draw line
+			else {
+				draw_set_color(c_orange);	
+				draw_line_width(vert_k.x, vert_k.y, vert_j.x, vert_j.y, 7);
+			}
 		}
 	}
 	

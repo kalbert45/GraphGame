@@ -14,8 +14,8 @@ if (room == room_start) {
 	
 	// draw title
 	draw_set_font(TitleFont);
-	draw_set_color(c_black);
-	draw_text(title_x - 5, title_y + 5, title);
+	//draw_set_color(c_black);
+	//draw_text(title_x - 5, title_y + 5, title);
 	draw_set_color(c_yellow);
 	draw_text(title_x, title_y, title);
 	

@@ -24,7 +24,7 @@ menu_shade_curve_speed = 0.05;
 menu_shade = 0.6; // controls shade of menu options
 uni_shade = shader_get_uniform(FontShader, "shade");
 
-title = "STARGAZING";
+title = "LITTLE STARS";
 title_x = 960;
 title_y = 360;
 
