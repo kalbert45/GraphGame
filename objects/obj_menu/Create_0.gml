@@ -5,7 +5,9 @@ ds_map_add(set, "SFX Volume", [5, [0,10]]);
 ds_map_add(set, "Music Volume", [5, [0,10]]);
 
 /// @description variables
-curveAsset = EaseCurves; // ease curve
+num_levels = 20;
+
+var curveAsset = EaseCurves; // ease curve
 curveStruct = animcurve_get(curveAsset);
 
 camera_curve_pos = 0;
@@ -13,11 +15,11 @@ camera_curve_speed = 0.016;
 
 menu_shade_curve_pos[2] = 0;
 submenu_shade_curve_pos[3] = 0;
+back_shade_curve_pos = 0;
+next_shade_curve_pos = 0;
+
 menu_shade_curve_speed = 0.05;
 
-select = -1; // selected menu option, -1 means nothing selected
-
-menu_control = true; // player control of menu
 
 menu_shade = 0.6; // controls shade of menu options
 uni_shade = shader_get_uniform(FontShader, "shade");
@@ -50,6 +52,10 @@ function button(_y, _wl, _wr, _h) constructor {
 	h = _h;
 }
 
+back_button = new button(0,0,0,0);
+
+next_button = new button(0,0,0,0);
+
 button_menu[2] = new button(0,0,0,0);
 button_menu[1] = new button(0,0,0,0);
 button_menu[0] = new button(0,0,0,0);
@@ -58,3 +64,7 @@ options_button_menu[3] = new button(0,0,0,0);
 options_button_menu[2] = new button(0,0,0,0);
 options_button_menu[1] = new button(0,0,0,0);
 options_button_menu[0] = new button(0,0,0,0);
+
+for (var i = num_levels - 1; i > -1; i--) {
+	level_buttons[num_levels] = new button(0,0,0,0);
+}

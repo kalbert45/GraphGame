@@ -21,7 +21,6 @@
     {"id":{"name":"menu_hover","path":"sounds/menu_hover/menu_hover.yy",},"order":6,},
     {"id":{"name":"graph_destroy","path":"scripts/graph_destroy/graph_destroy.yy",},"order":3,},
     {"id":{"name":"spr_cursor","path":"sprites/spr_cursor/spr_cursor.yy",},"order":2,},
-    {"id":{"name":"graph_draw_act18","path":"scripts/graph_draw_act18/graph_draw_act18.yy",},"order":5,},
     {"id":{"name":"graph_add_node","path":"scripts/graph_add_node/graph_add_node.yy",},"order":1,},
     {"id":{"name":"TitleFont","path":"fonts/TitleFont/TitleFont.yy",},"order":1,},
     {"id":{"name":"play_menu_select_sfx","path":"scripts/play_menu_select_sfx/play_menu_select_sfx.yy",},"order":1,},
@@ -78,8 +77,8 @@
   },
   "RoomOrderNodes": [
     {"roomId":{"name":"room_start","path":"rooms/room_start/room_start.yy",},},
-    {"roomId":{"name":"room_level1","path":"rooms/room_level1/room_level1.yy",},},
     {"roomId":{"name":"room_levelselect","path":"rooms/room_levelselect/room_levelselect.yy",},},
+    {"roomId":{"name":"room_level1","path":"rooms/room_level1/room_level1.yy",},},
     {"roomId":{"name":"room_level2","path":"rooms/room_level2/room_level2.yy",},},
   ],
   "Folders": [

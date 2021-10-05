@@ -1,15 +1,16 @@
 /// @description draw menu
+
+// variables for lerp
+var min_scale = 1; // Minimum scale
+var max_scale = 1.3; // Maximum scale
+var scale_spd = 0.1; // Speed of scaling
+
 if (room == room_start) {
 	draw_set_halign(fa_center);
 	draw_set_valign(fa_center);
 
 	// line spacing
 	var gap = 120
-	
-	// variables for lerp
-	var min_scale = 1; // Minimum scale
-	var max_scale = 1.3; // Maximum scale
-	var scale_spd = 0.1; // Speed of scaling
 	
 	// draw title
 	draw_set_font(TitleFont);
@@ -79,26 +80,98 @@ if (room == room_start) {
 }
 
 // draw level select menu
-else if (room == room_levelselect) { // temp
-	draw_set_color(c_white);
-	draw_text(100, 100, "BACK");
+else if (room == room_levelselect) { 
+	var gap = 80;
 	
-	var txt = "Level 1";
-	var xx = menu_x;
-	var yy = menu_y;
-	button_level1 = new button(0,0,0,0);
-	button_level1.y = yy - string_height(txt)/2;
-	button_level1.wl = xx - string_width(txt)/2;
-	button_level1.wr = xx + string_width(txt)/2;
-	button_level1.h = string_height(txt);
+	// make back button
+	var txt = "BACK";
+	var xx = 100;
+	var yy = 100;
+	back_button.y = yy - string_height(txt)/2;
+	back_button.wl = xx - string_width(txt)/2;
+	back_button.wr = xx + string_width(txt)/2;
+	back_button.h = string_height(txt);
 	
-	var mouse_hover = mouse_y > button_level1.y && mouse_y < button_level1.y + 
-								button_level1.h && mouse_x < button_level1.wr && mouse_x > button_level1.wl;
-		//temporary code						
-	if (mouse_hover && mouse_check_button_pressed(mb_left)) {
-		transition_start(room_level2, sq_fadeout, sq_fadein);
+	var mouse_hover = mouse_y > back_button.y && mouse_y < back_button.y + 
+								back_button.h && mouse_x < back_button.wr && mouse_x > back_button.wl;
+	
+	back_shade_curve_pos = draw_menu_item(xx, yy, txt, back_button, curveStruct, back_shade_curve_pos, menu_shade_curve_speed, uni_shade, menu_shade, mouse_hover, min_scale, max_scale, scale_spd);
+	
+	if (mouse_hover && menu_control) {
+		if (mouse_check_button_pressed(mb_left)) { // click to select
+				play_menu_select_sfx();
+				menu_control = false;
+				transition_start(room_start, sq_fadeout, sq_fadein);
+		}
 	}
 	
-	draw_set_color(c_white);
-	draw_text(xx, yy, txt);
+	// make levels buttons
+	for (var i = 0; i < num_levels; i++) {
+		var j = i div 10;
+		
+		var txt = string(i+1);
+		var xx = menu_x - 480 + (i mod 10)*gap;
+		var yy = menu_y - 320 + j*gap;
+		level_buttons[i].y = yy - string_height(txt)/2;
+		level_buttons[i].wl = xx - string_width(txt)/2;
+		level_buttons[i].wr = xx + string_width(txt)/2;
+		level_buttons[i].h = string_height(txt);
+	
+		var mouse_hover = mouse_y > level_buttons[i].y && mouse_y < level_buttons[i].y + 
+									level_buttons[i].h && mouse_x < level_buttons[i].wr && mouse_x > level_buttons[i].wl;
+			//temporary code						
+		if (mouse_hover && mouse_check_button_pressed(mb_left)) {
+			transition_start(i+2, sq_fadeout, sq_fadein);
+		}
+	
+		draw_set_color(c_white);
+		draw_text(xx, yy, txt);
+	}
+}
+else {
+	// make menu button; currently back button
+	var txt = "MENU";
+	var xx = 100;
+	var yy = 100;
+	back_button.y = yy - string_height(txt)/2;
+	back_button.wl = xx - string_width(txt)/2;
+	back_button.wr = xx + string_width(txt)/2;
+	back_button.h = string_height(txt);
+	
+	var mouse_hover = mouse_y > back_button.y && mouse_y < back_button.y + 
+								back_button.h && mouse_x < back_button.wr && mouse_x > back_button.wl;
+	
+	back_shade_curve_pos = draw_menu_item(xx, yy, txt, back_button, curveStruct, back_shade_curve_pos, menu_shade_curve_speed, uni_shade, menu_shade, mouse_hover, min_scale, max_scale, scale_spd);
+	
+	if (mouse_hover && menu_control) {
+		if (mouse_check_button_pressed(mb_left)) { // click to select
+				play_menu_select_sfx();
+				menu_control = false;
+				transition_start(room_start, sq_fadeout, sq_fadein);
+		}
+	}
+	
+	if (global.cleared) {
+			// make back button
+		var txt = "Next level";
+		var xx = room_width - 100;
+		var yy = room_height - 100;
+		next_button.y = yy - string_height(txt)/2;
+		next_button.wl = xx - string_width(txt)/2;
+		next_button.wr = xx + string_width(txt)/2;
+		next_button.h = string_height(txt);
+	
+		var mouse_hover = mouse_y > next_button.y && mouse_y < next_button.y + 
+									next_button.h && mouse_x < next_button.wr && mouse_x > next_button.wl;
+	
+		next_shade_curve_pos = draw_menu_item(xx, yy, txt, next_button, curveStruct, next_shade_curve_pos, menu_shade_curve_speed, uni_shade, menu_shade, mouse_hover, min_scale, max_scale, scale_spd);
+	
+		if (mouse_hover && menu_control) {
+			if (mouse_check_button_pressed(mb_left)) { // click to select
+					play_menu_select_sfx();
+					menu_control = false;
+					transition_start(room+1, sq_fadeout, sq_fadein);
+			}
+		}
+	}
 }

@@ -31,3 +31,9 @@ if (room == room_start) {
 		camera_set_view_pos(view_camera[0], obj_camera.cameraX, obj_camera.cameraY);
 	}
 }
+else if (room == room_levelselect) {
+}
+
+else {
+
+}
