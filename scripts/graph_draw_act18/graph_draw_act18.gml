@@ -1,46 +1,53 @@
 // draws activated edges for the graph
 // takes the graph (ds_map) and animation curve structure for the lines as arguments
-function graph_draw_act(graph, line_curve_struct){
+function graph_draw_actxxxxxxxx(act_line, line_curve_struct){
+	var size = ds_list_size(act_line);
+	show_debug_message(size);
 	// if empty, do nothing
-	if (ds_map_empty(graph)) {
+	if (ds_list_empty(act_line) || size == 1) {
 		return;	
 	}
-	// get activated adjacency map from graph data structure
-	var act_adj_map = graph[? "act_adj"];
-	// loop through each list in the adjacency map
-	for (var k = ds_map_find_first(act_adj_map); !is_undefined(k); k = ds_map_find_next(act_adj_map, k)) {
-		var act_adj_list = act_adj_map[? k];
-		var list_len = ds_list_size(act_adj_list);
-		// draw each edge adjacent to given vertex k
-		// loop through each element in list
-		for (var i = 0; i < list_len; i++) {
-			var j = 0;
-			j = act_adj_list[| i];
-	
-			// get instances corresponding to labels k->j
-			var vert_k = graph[? k];
-			var vert_j = graph[? j];
-			
-			var diff_x = vert_j.x - vert_k.x;
-			var diff_y = vert_j.y - vert_k.y;
-				
-			if (global.cleared) {
-				draw_set_color(c_lime);	
-				var line_x = vert_j.x;
-				var line_y = vert_j.y;
-			}
-			else {
-				var curveChannel = animcurve_get_channel(line_curve_struct, "EaseIn");
-				
-				var val = animcurve_channel_evaluate(curveChannel, vert_j.line_curve_pos[min(vert_j.activated - 1, vert_k.activated - 1)]);
-				
-				var line_x = vert_k.x + (diff_x * val);
-				var line_y = vert_k.y + (diff_y * val);
-				
-				draw_set_color(c_orange);
-			}
-			draw_line_width(vert_k.x, vert_k.y, line_x, line_y, 7);
+	// loop through each element in activated line
+	for (var i = 0; i < size-1; i++) {
+		// first two vertices are exception if line is long enough
+		if (i == 0 && size > 2) {
+			var vert_j = act_line[| i];
+			var vert_k = act_line[| i+1];
 		}
+		var curve_pos_index = 0;
+		var vert_k = 0;
+		var vert_j = 0;
+		vert_k = act_line[| i];
+		vert_j = act_line[| i+1];
+		if (is_array(vert_k)) {
+			curve_pos_index = vert_k[1];	
+			var vert_k = vert_k[0];
+		}
+		if (is_array(vert_j)) {
+			curve_pos_index = vert_j[1];
+			var vert_j = vert_j[0];
+		}
+			
+		var diff_x = vert_j.x - vert_k.x;
+		var diff_y = vert_j.y - vert_k.y;
+				
+		if (global.cleared) {
+			draw_set_color(c_lime);	
+			var line_x = vert_j.x;
+			var line_y = vert_j.y;
+		}
+		else {
+			var curveChannel = animcurve_get_channel(line_curve_struct, "EaseIn");
+				
+			var val = animcurve_channel_evaluate(curveChannel, vert_j.line_curve_pos[curve_pos_index]);
+				
+			var line_x = vert_k.x + (diff_x * val);
+			var line_y = vert_k.y + (diff_y * val);
+				
+			draw_set_color(c_orange);
+		}
+		draw_line_width(vert_k.x, vert_k.y, line_x, line_y, 7);
+		
 	}
 	
 	// draw lingering line on deselect

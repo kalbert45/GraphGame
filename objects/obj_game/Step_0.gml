@@ -9,7 +9,7 @@ if (keyboard_check_pressed(ord("R"))) {
 	global.mouse_activated = false;
 	ds_list_clear(act_line);
 	graph_act_clear(graph);
-	obj_vertex.activated = 0;
+	obj_vertex.activated = false;
 	obj_vertex.v_prev_deselect = undefined;
 	act_edge_count = 0;
 }

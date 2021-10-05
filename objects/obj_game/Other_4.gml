@@ -12,7 +12,7 @@ win_num = 0;
 win_con = undefined;
 
 // max vertex degree; only important for euler levels
-max_degree = 0;
+//max_degree = 0;
 
 /// variables for keeping track of activated points on graph
 act_line = ds_list_create(); // points on activated line

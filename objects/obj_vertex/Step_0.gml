@@ -25,19 +25,19 @@ image_yscale = lerp(image_yscale, goal_scale, scale_spd);
 // vertices behave differently based on win condition
 if (obj_game.win_con == "hamiltonian") {
 	// check if vertex should be activated
-	//if (ds_list_find_index(obj_game.act_line, id) >= 0) {
-	//	id.activated = 1;	
-	//}
-	//else {
-	//	id.activated = 0;	
-//	}
+	if (ds_list_find_index(obj_game.act_line, id) >= 0) {
+		id.activated = true;	
+	}
+	else {
+		id.activated = false;	
+	}
 	
 	// handle animation curve values
-	if (id.activated && line_curve_pos[0] < 1) {
-		line_curve_pos[0] += obj_game.line_curve_speed;
+	if (id.activated && line_curve_pos < 1) {
+		line_curve_pos += obj_game.line_curve_speed;
 	}
-	else if (!id.activated && line_curve_pos[0] > 0) {
-		line_curve_pos[0] -= obj_game.line_curve_speed;
+	else if (!id.activated && line_curve_pos > 0) {
+		line_curve_pos -= obj_game.line_curve_speed;
 	}
 	
 	// on click functions
@@ -52,13 +52,16 @@ if (obj_game.win_con == "hamiltonian") {
 		if (mouse_check_button(mb_right)) {
 			// check if solo point
 			if (ds_list_size(obj_game.act_line) == 1 && obj_game.act_line[| 0] == id) {
-				id.activated--; // deactivate
+				//id.activated--; // deactivate
+				vert_prev = undefined;
+				v_prev_deselect = undefined;
 				ds_list_delete(obj_game.act_line, 0); // active line -> empty
 				global.selected = undefined; // deselect
 			}
 			// check if front endpoint
 			else if (obj_game.act_line[| 0] == id) {
-				id.activated--;
+				vert_prev = undefined;
+				//id.activated--;
 				var deselect = ds_list_find_value(obj_game.act_line, 0);
 				ds_list_delete(obj_game.act_line, 0); // delete endpoint
 			
@@ -67,10 +70,13 @@ if (obj_game.win_con == "hamiltonian") {
 				obj_game.act_edge_count--;
 				global.selected = v_prev;
 				global.selected.v_prev_deselect = deselect;
+				show_debug_message("from:"+global.selected);
+				show_debug_message(global.selected.v_prev_deselect);
 			}
 			// check if back endpoint
 			else if (obj_game.act_line[| ds_list_size(obj_game.act_line)-1] == id) {
-				id.activated--;
+				vert_prev = undefined;
+				//id.activated--;
 				var deselect = ds_list_find_value(obj_game.act_line, ds_list_size(obj_game.act_line)-1);
 				ds_list_delete(obj_game.act_line, ds_list_size(obj_game.act_line)-1); // delete endpoint
 			
@@ -80,6 +86,8 @@ if (obj_game.win_con == "hamiltonian") {
 				obj_game.act_edge_count--;
 				global.selected = v_prev;
 				global.selected.v_prev_deselect = deselect;
+				show_debug_message(global.selected);
+				show_debug_message(global.selected.v_prev_deselect);
 			}
 		}
 		// left click activates vertex and mouse, selects vertex
@@ -87,8 +95,10 @@ if (obj_game.win_con == "hamiltonian") {
 		if (mouse_check_button_pressed(mb_left)) {
 			// select vertex if none are selected
 			if (ds_list_empty(obj_game.act_line)) {
+				vert_prev = undefined;
+				v_prev_deselect = undefined;
 				play_graph_sfx();
-				id.activated++;
+				//id.activated++;
 				global.selected = id;
 				global.mouse_activated = true;
 				ds_list_add(obj_game.act_line, id);
@@ -100,7 +110,7 @@ if (obj_game.win_con == "hamiltonian") {
 			}
 			// only activate unactivated vertices and edges adjacent to selected vertex
 			if (!id.activated && graph_check_adjacent(obj_game.graph, id)) {
-				id.activated++;
+				//id.activated++;
 				graph_add_act_edge(obj_game.graph, global.selected.label, label);
 				v_prev_deselect = undefined;
 				obj_game.act_edge_count++;
@@ -111,6 +121,7 @@ if (obj_game.win_con == "hamiltonian") {
 					ds_list_add(obj_game.act_line, id);
 				}
 				play_graph_sfx();
+				vert_prev = global.selected;
 				global.selected = id;
 				global.mouse_activated = true;
 			}
@@ -123,7 +134,7 @@ if (obj_game.win_con == "hamiltonian") {
 		// only if its adjacent to selected
 		if (mouse_check_button(mb_left)) {
 			if (!id.activated && graph_check_adjacent(obj_game.graph, id)) {
-				id.activated++;
+				//id.activated++;
 				graph_add_act_edge(obj_game.graph, global.selected.label, label);
 				v_prev_deselect = undefined;
 				obj_game.act_edge_count++;
@@ -134,20 +145,32 @@ if (obj_game.win_con == "hamiltonian") {
 					ds_list_add(obj_game.act_line, id);
 				}
 				play_graph_sfx();
+				vert_prev = global.selected;
 				global.selected = id;
 			}
 		}
 	}
 }
+
+
+
+
+// euler win condition
 else if (obj_game.win_con == "euler") {
-	// handle animation curve values 
-	for (var i = 0; i < array_length(line_curve_pos);i++) {
-		if (i < id.activated && line_curve_pos[i] < 1) {
-			line_curve_pos[i] += obj_game.line_curve_speed;
-		}
-		else if (!(i < id.activated) && line_curve_pos[i] > 0) {
-			line_curve_pos[i] -= obj_game.line_curve_speed;
-		}
+	// check if vertex should be activated
+	if (ds_list_find_index(obj_game.act_line, id) >= 0) {
+		id.activated = true;	
+	}
+	else {
+		id.activated = false;	
+	}
+	
+	// handle animation curve values
+	if (id.activated && line_curve_pos < 1) {
+		line_curve_pos += obj_game.line_curve_speed;
+	}
+	else if (!id.activated && line_curve_pos > 0) {
+		line_curve_pos -= obj_game.line_curve_speed;
 	}
 	
 	// on click functions
@@ -162,13 +185,13 @@ else if (obj_game.win_con == "euler") {
 		if (mouse_check_button(mb_right)) {
 			// check if solo point
 			if (ds_list_size(obj_game.act_line) == 1 && obj_game.act_line[| 0] == id) {
-				id.activated--; // deactivate
+				//id.activated--; // deactivate
 				ds_list_delete(obj_game.act_line, 0); // active line -> empty
 				global.selected = undefined; // deselect
 			}
 			// check if front endpoint
 			else if (obj_game.act_line[| 0] == id) {
-				id.activated--;
+				//id.activated--;
 				var deselect = ds_list_find_value(obj_game.act_line, 0);
 				ds_list_delete(obj_game.act_line, 0); // delete endpoint
 			
@@ -180,7 +203,7 @@ else if (obj_game.win_con == "euler") {
 			}
 			// check if back endpoint
 			else if (obj_game.act_line[| ds_list_size(obj_game.act_line)-1] == id) {
-				id.activated--;
+				//id.activated--;
 				var deselect = ds_list_find_value(obj_game.act_line, ds_list_size(obj_game.act_line)-1);
 				ds_list_delete(obj_game.act_line, ds_list_size(obj_game.act_line)-1); // delete endpoint
 			
@@ -197,7 +220,7 @@ else if (obj_game.win_con == "euler") {
 			// select vertex if none are selected
 			if (ds_list_empty(obj_game.act_line)) {
 				play_graph_sfx();
-				id.activated++;
+				//id.activated++;
 				global.selected = id;
 				global.mouse_activated = true;
 				ds_list_add(obj_game.act_line, id);
@@ -209,7 +232,7 @@ else if (obj_game.win_con == "euler") {
 			}
 			// activate any vertex besides previous, activate edges adjacent to selected vertex
 			if (graph_check_adjacent(obj_game.graph, id) && !act_graph_check_adjacent(obj_game.graph, id)) {
-				id.activated++;
+				//id.activated++;
 				graph_add_act_edge(obj_game.graph, global.selected.label, label);
 				v_prev_deselect = undefined;
 				obj_game.act_edge_count++;
@@ -220,6 +243,7 @@ else if (obj_game.win_con == "euler") {
 					ds_list_add(obj_game.act_line, id);
 				}
 				play_graph_sfx();
+				vert_prev = global.selected;
 				global.selected = id;
 				global.mouse_activated = true;
 			}
@@ -232,7 +256,7 @@ else if (obj_game.win_con == "euler") {
 		// only if its adjacent to selected
 		if (mouse_check_button(mb_left)) {
 			if (graph_check_adjacent(obj_game.graph, id) && !act_graph_check_adjacent(obj_game.graph, id)) {
-				id.activated++;
+				//id.activated++;
 				graph_add_act_edge(obj_game.graph, global.selected.label, label);
 				v_prev_deselect = undefined;
 				obj_game.act_edge_count++;
@@ -243,6 +267,7 @@ else if (obj_game.win_con == "euler") {
 					ds_list_add(obj_game.act_line, id);
 				}
 				play_graph_sfx();
+				vert_prev = global.selected;
 				global.selected = id;
 			}
 		}
