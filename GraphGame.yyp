@@ -47,6 +47,7 @@
     {"id":{"name":"create_level2","path":"scripts/create_level2/create_level2.yy",},"order":1,},
     {"id":{"name":"graph_add_act_edge","path":"scripts/graph_add_act_edge/graph_add_act_edge.yy",},"order":1,},
     {"id":{"name":"room_level2","path":"rooms/room_level2/room_level2.yy",},"order":3,},
+    {"id":{"name":"outbound_v","path":"scripts/outbound_v/outbound_v.yy",},"order":11,},
     {"id":{"name":"sq_fadeout","path":"sequences/sq_fadeout/sq_fadeout.yy",},"order":0,},
     {"id":{"name":"obj_camera","path":"objects/obj_camera/obj_camera.yy",},"order":2,},
     {"id":{"name":"menu_selectBflat","path":"sounds/menu_selectBflat/menu_selectBflat.yy",},"order":11,},

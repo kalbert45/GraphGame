@@ -155,7 +155,7 @@ if (obj_game.win_con == "hamiltonian") {
 // euler win con
 else if (obj_game.win_con == "euler") {
 	// handle animation curve values 
-	var size = ds_list_size(id.inbound_v);
+	var size = max(ds_list_size(id.inbound_v), ds_list_size(outbound_v(label)));
 	for (var i = 0; i < array_length(line_curve_pos);i++) {
 		if (i < size && line_curve_pos[i] < 1) {
 			id.line_curve_pos[i] += obj_game.line_curve_speed;
@@ -200,6 +200,7 @@ else if (obj_game.win_con == "euler") {
 				id.activated--;
 				ds_list_delete(obj_game.act_line, ds_list_size(obj_game.act_line)-1); // delete endpoint
 			
+			
 				var v_prev = ds_list_find_value(obj_game.act_line, ds_list_size(obj_game.act_line)-1); // replacement endpoint
 				graph_rm_act_edge(obj_game.graph, label, v_prev.label);
 				obj_game.act_edge_count--;
@@ -226,20 +227,21 @@ else if (obj_game.win_con == "euler") {
 				global.selected = id;
 				global.mouse_activated = true;
 			}
-			// activate any vertex besides previous, activate edges adjacent to selected vertex
+			// only activate unactivated vertices and edges adjacent to selected vertex
 			if (graph_check_adjacent(obj_game.graph, id) && !act_graph_check_adjacent(obj_game.graph, id)) {
 				id.activated++;
-				graph_add_act_edge(obj_game.graph, global.selected.label, label);
 				global.v_prev_deselect = undefined;
 				obj_game.act_edge_count++;
 				if (global.selected == obj_game.act_line[| 0]) {
+					graph_add_act_edge(obj_game.graph, label, global.selected.label);
 					ds_list_insert(obj_game.act_line, 0, id);
+					ds_list_add(global.selected.inbound_v, label);
 				}
 				else {
+					graph_add_act_edge(obj_game.graph, global.selected.label, label);
 					ds_list_add(obj_game.act_line, id);
-				}
-				ds_list_add(id.inbound_v, global.selected.label);
-				
+					ds_list_add(id.inbound_v, global.selected.label);
+				}				
 				play_graph_sfx();
 				global.selected = id;
 				global.mouse_activated = true;
@@ -254,16 +256,18 @@ else if (obj_game.win_con == "euler") {
 		if (mouse_check_button(mb_left)) {
 			if (graph_check_adjacent(obj_game.graph, id) && !act_graph_check_adjacent(obj_game.graph, id)) {
 				id.activated++;
-				graph_add_act_edge(obj_game.graph, global.selected.label, label);
 				global.v_prev_deselect = undefined;
 				obj_game.act_edge_count++;
 				if (global.selected == obj_game.act_line[| 0]) {
+					graph_add_act_edge(obj_game.graph, label, global.selected.label);
 					ds_list_insert(obj_game.act_line, 0, id);
+					ds_list_add(global.selected.inbound_v, label);
 				}
 				else {
+					graph_add_act_edge(obj_game.graph, global.selected.label, label);
 					ds_list_add(obj_game.act_line, id);
-				}
-				ds_list_add(id.inbound_v, global.selected.label);
+					ds_list_add(id.inbound_v, global.selected.label);
+				}	
 				
 				play_graph_sfx();
 				global.selected = id;
