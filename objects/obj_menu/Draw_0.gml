@@ -15,8 +15,8 @@ if (room == room_start) {
 	// draw title
 	draw_set_font(TitleFont);
 	draw_set_color(c_black);
-	draw_text(title_x - 10, title_y + 7, title);
-	draw_set_color(c_orange);
+	draw_text(title_x - 5, title_y + 5, title);
+	draw_set_color(c_yellow);
 	draw_text(title_x, title_y, title);
 	
 	draw_set_font(MenuFont);
@@ -152,7 +152,7 @@ else {
 	}
 	
 	if (global.cleared) {
-			// make back button
+			// make next level button
 		var txt = "Next level";
 		var xx = room_width - 100;
 		var yy = room_height - 100;

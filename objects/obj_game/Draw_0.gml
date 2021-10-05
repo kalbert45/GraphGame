@@ -5,6 +5,7 @@ if (room != room_start && room != room_levelselect) {
 }
 
 if (global.mouse_activated) {
+	draw_circle_color(mouse_x, mouse_y, 32, c_yellow, c_yellow, false);
 //	draw_set_color(c_orange);
 //	draw_line_width(mouse_x, mouse_y, global.selected.x, global.selected.y, 5);
 }

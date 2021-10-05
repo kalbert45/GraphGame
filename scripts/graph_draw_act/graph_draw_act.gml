@@ -32,7 +32,9 @@ function graph_draw_act(graph, line_curve_struct){
 			else {
 				var curveChannel = animcurve_get_channel(line_curve_struct, "EaseIn");
 				
-				var val = animcurve_channel_evaluate(curveChannel, vert_j.line_curve_pos[min(vert_j.activated - 1, vert_k.activated - 1)]);
+				var index = ds_list_find_index(vert_j.inbound_v, vert_k.label);
+				
+				var val = animcurve_channel_evaluate(curveChannel, vert_j.line_curve_pos[index]);
 				
 				var line_x = vert_k.x + (diff_x * val);
 				var line_y = vert_k.y + (diff_y * val);
@@ -52,7 +54,12 @@ function graph_draw_act(graph, line_curve_struct){
 		var diff_y = vert_j.y - vert_k.y;
 		
 		var curveChannel = animcurve_get_channel(line_curve_struct, "EaseBack");
-		var val = animcurve_channel_evaluate(curveChannel, vert_j.line_curve_pos[vert_j.activated]);
+		if (vert_j.activated < array_length(vert_j.line_curve_pos)) {
+			var val = animcurve_channel_evaluate(curveChannel, vert_j.line_curve_pos[vert_j.activated]);
+		}
+		else {
+			var val = 1;	
+		}
 		
 		var line_x = vert_k.x + (diff_x * val);
 		var line_y = vert_k.y + (diff_y * val);

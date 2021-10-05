@@ -5,13 +5,15 @@
 display_set_gui_size(RES_W, RES_H);
 
 if (display_aa >= 8) {
-	display_reset(8, false);
+	display_reset(8, true);
 }
 else {
-	display_reset(display_aa, false);	
+	display_reset(display_aa, true);	
 }
 
 cursor_sprite = spr_cursor;
+
+graph = undefined;
 
 line_curve_asset = EaseCurves; // ease curve
 line_curve_struct = animcurve_get(line_curve_asset);
