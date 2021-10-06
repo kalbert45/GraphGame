@@ -1,5 +1,8 @@
 /// @description check selection
 if (room == room_start) {
+	submenu[1][1] = clamp(submenu[1][1], 0, 1);
+	submenu[0][1] = clamp(submenu[0][1], 0, 1);
+	
 	if (select == 0) { // level select
 		transition_start(room_levelselect, sq_fadeout, sq_fadein);
 	}
@@ -23,7 +26,7 @@ if (room == room_start) {
 			camera_curve_pos -= camera_curve_speed;
 		}
 		else {
-			menu_control = true;	
+			menu_control = true;
 		}
 		var curveChannel = animcurve_get_channel(curveStruct, "EaseBack");
 		var val = animcurve_channel_evaluate(curveChannel, camera_curve_pos);

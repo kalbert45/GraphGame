@@ -7,8 +7,8 @@
   "type": 0,
   "bitDepth": 1,
   "audioGroupId": {
-    "name": "audiogroup_default",
-    "path": "audiogroups/audiogroup_default",
+    "name": "ag_BGM",
+    "path": "audiogroups/ag_BGM",
   },
   "soundFile": "BGM.mp3",
   "duration": 296.364532,

@@ -30,9 +30,11 @@
     {"id":{"name":"BGM_temp","path":"sounds/BGM_temp/BGM_temp.yy",},"order":8,},
     {"id":{"name":"create_level1","path":"scripts/create_level1/create_level1.yy",},"order":0,},
     {"id":{"name":"EaseCurves","path":"animcurves/EaseCurves/EaseCurves.yy",},"order":0,},
+    {"id":{"name":"obj_audio","path":"objects/obj_audio/obj_audio.yy",},"order":4,},
     {"id":{"name":"graph_create","path":"scripts/graph_create/graph_create.yy",},"order":2,},
     {"id":{"name":"clearSFX","path":"sounds/clearSFX/clearSFX.yy",},"order":6,},
     {"id":{"name":"BGM","path":"sounds/BGM/BGM.yy",},"order":9,},
+    {"id":{"name":"OptionsFont","path":"fonts/OptionsFont/OptionsFont.yy",},"order":2,},
     {"id":{"name":"obj_game","path":"objects/obj_game/obj_game.yy",},"order":1,},
     {"id":{"name":"graph_rm_act_edge","path":"scripts/graph_rm_act_edge/graph_rm_act_edge.yy",},"order":3,},
     {"id":{"name":"clear_sfx","path":"sounds/clear_sfx/clear_sfx.yy",},"order":5,},
@@ -44,6 +46,7 @@
     {"id":{"name":"graph_check_adjacent","path":"scripts/graph_check_adjacent/graph_check_adjacent.yy",},"order":5,},
     {"id":{"name":"FontShader","path":"shaders/FontShader/FontShader.yy",},"order":0,},
     {"id":{"name":"menu_selectEflat","path":"sounds/menu_selectEflat/menu_selectEflat.yy",},"order":7,},
+    {"id":{"name":"obj_bgm_bar","path":"objects/obj_bgm_bar/obj_bgm_bar.yy",},"order":5,},
     {"id":{"name":"create_level2","path":"scripts/create_level2/create_level2.yy",},"order":1,},
     {"id":{"name":"graph_add_act_edge","path":"scripts/graph_add_act_edge/graph_add_act_edge.yy",},"order":1,},
     {"id":{"name":"room_level2","path":"rooms/room_level2/room_level2.yy",},"order":3,},
@@ -108,6 +111,8 @@
   ],
   "AudioGroups": [
     {"targets":-1,"resourceVersion":"1.3","name":"audiogroup_default","resourceType":"GMAudioGroup",},
+    {"targets":-1,"resourceVersion":"1.3","name":"ag_BGM","resourceType":"GMAudioGroup",},
+    {"targets":-1,"resourceVersion":"1.3","name":"ag_SFX","resourceType":"GMAudioGroup",},
   ],
   "TextureGroups": [
     {"isScaled":true,"autocrop":true,"border":2,"mipsToGenerate":0,"groupParent":null,"targets":-1,"resourceVersion":"1.3","name":"Default","resourceType":"GMTextureGroup",},

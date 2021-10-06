@@ -1,12 +1,4 @@
 /// create camera
-
-cameraX = 0;
-cameraXTo = 1920;
-cameraY = 0;
-
-cameraWidth = 1920;
-cameraHeight = 1080;
-
 view_enabled = true;
 view_visible[0] = true;
 
