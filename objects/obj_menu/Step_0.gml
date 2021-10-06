@@ -35,6 +35,9 @@ if (room == room_start) {
 	}
 }
 else if (room == room_levelselect) {
+	if (select >= 1) {
+		transition_start(select+1, sq_fadeout, sq_fadein);	
+	}
 }
 
 else {

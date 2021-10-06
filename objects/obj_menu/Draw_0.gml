@@ -221,11 +221,12 @@ else if (room == room_levelselect) {
 	
 		var mouse_hover = mouse_y > level_buttons[i].y && mouse_y < level_buttons[i].y + 
 									level_buttons[i].h && mouse_x < level_buttons[i].wr && mouse_x > level_buttons[i].wl;
-			//temporary code						
+							
 		if (mouse_hover && mouse_check_button_pressed(mb_left)) {
-			transition_start(i+2, sq_fadeout, sq_fadein);
+			select = i+1;
 		}
 	
+		//temporary code
 		draw_set_color(c_white);
 		draw_text(xx, yy, txt);
 	}

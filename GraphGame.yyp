@@ -17,6 +17,7 @@
     {"id":{"name":"menu_selectF_","path":"sounds/menu_selectF_/menu_selectF_.yy",},"order":4,},
     {"id":{"name":"menu_selectG","path":"sounds/menu_selectG/menu_selectG.yy",},"order":5,},
     {"id":{"name":"room_levelselect","path":"rooms/room_levelselect/room_levelselect.yy",},"order":2,},
+    {"id":{"name":"room_level3","path":"rooms/room_level3/room_level3.yy",},"order":4,},
     {"id":{"name":"menu_selectEflat_","path":"sounds/menu_selectEflat_/menu_selectEflat_.yy",},"order":8,},
     {"id":{"name":"menu_hover","path":"sounds/menu_hover/menu_hover.yy",},"order":6,},
     {"id":{"name":"graph_destroy","path":"scripts/graph_destroy/graph_destroy.yy",},"order":3,},
@@ -51,6 +52,7 @@
     {"id":{"name":"room_level2","path":"rooms/room_level2/room_level2.yy",},"order":3,},
     {"id":{"name":"outbound_v","path":"scripts/outbound_v/outbound_v.yy",},"order":11,},
     {"id":{"name":"sq_fadeout","path":"sequences/sq_fadeout/sq_fadeout.yy",},"order":0,},
+    {"id":{"name":"create_level3","path":"scripts/create_level3/create_level3.yy",},"order":3,},
     {"id":{"name":"obj_camera","path":"objects/obj_camera/obj_camera.yy",},"order":2,},
     {"id":{"name":"menu_selectBflat","path":"sounds/menu_selectBflat/menu_selectBflat.yy",},"order":11,},
     {"id":{"name":"graph_act_clear","path":"scripts/graph_act_clear/graph_act_clear.yy",},"order":0,},
@@ -81,8 +83,9 @@
   "RoomOrderNodes": [
     {"roomId":{"name":"room_start","path":"rooms/room_start/room_start.yy",},},
     {"roomId":{"name":"room_levelselect","path":"rooms/room_levelselect/room_levelselect.yy",},},
-    {"roomId":{"name":"room_level1","path":"rooms/room_level1/room_level1.yy",},},
+    {"roomId":{"name":"room_level3","path":"rooms/room_level3/room_level3.yy",},},
     {"roomId":{"name":"room_level2","path":"rooms/room_level2/room_level2.yy",},},
+    {"roomId":{"name":"room_level1","path":"rooms/room_level1/room_level1.yy",},},
   ],
   "Folders": [
     {"folderPath":"folders/Sprites.yy","order":1,"resourceVersion":"1.0","name":"Sprites","tags":[],"resourceType":"GMFolder",},

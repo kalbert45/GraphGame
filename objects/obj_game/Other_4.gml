@@ -25,6 +25,12 @@ act_edge_count = 0; // number of activated edges
 if (room == room_level1) { // create level 1
 	graph = create_level1();
 }
-if (room == room_level2) { // create level 2
+else if (room == room_level2) { // create level 2
 	graph = create_level2();
 }
+else if (room == room_level3) { // create level 3
+	graph = create_level3();
+}
+//else if (room == room_level4) { // create level 2
+//	graph = create_level4();
+//}

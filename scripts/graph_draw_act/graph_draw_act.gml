@@ -23,7 +23,7 @@ function graph_draw_act(graph, line_curve_struct){
 			// if cleared, draw all lime
 			if (global.cleared) {
 				draw_set_color(c_lime);	
-				draw_line_width(vert_k.x, vert_k.y, vert_j.x, vert_j.y, 7);
+				draw_line_width(vert_k.x, vert_k.y, vert_j.x, vert_j.y, 5);
 			}
 			// if k is at front, draw from j to k
 			else if (obj_game.act_line[| 0].label == k) {
@@ -41,7 +41,7 @@ function graph_draw_act(graph, line_curve_struct){
 				
 				draw_set_color(c_orange);
 			
-				draw_line_width(vert_j.x, vert_j.y, line_x, line_y, 7);				
+				draw_line_width(vert_j.x, vert_j.y, line_x, line_y, 5);				
 			}
 			// if k is at back, draw k to j
 			else if (obj_game.act_line[| ds_list_size(obj_game.act_line)-1].label == j){
@@ -68,12 +68,12 @@ function graph_draw_act(graph, line_curve_struct){
 				
 				draw_set_color(c_orange);
 			
-				draw_line_width(vert_k.x, vert_k.y, line_x, line_y, 7);
+				draw_line_width(vert_k.x, vert_k.y, line_x, line_y, 5);
 			}
 			// otherwise, just draw line
 			else {
 				draw_set_color(c_orange);	
-				draw_line_width(vert_k.x, vert_k.y, vert_j.x, vert_j.y, 7);
+				draw_line_width(vert_k.x, vert_k.y, vert_j.x, vert_j.y, 5);
 			}
 		}
 	}
@@ -98,6 +98,6 @@ function graph_draw_act(graph, line_curve_struct){
 		var line_y = vert_k.y + (diff_y * val);
 	
 		draw_set_color(c_orange);
-		draw_line_width(vert_k.x, vert_k.y, line_x, line_y, 7);
+		draw_line_width(vert_k.x, vert_k.y, line_x, line_y, 5);
 	}
 }
