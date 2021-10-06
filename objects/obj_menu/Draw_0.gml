@@ -18,8 +18,8 @@ if (room == room_start) {
 	//draw_text(title_x - 5, title_y + 5, title);
 	draw_set_color(c_yellow);
 	shader_set(FontShader);
-	shader_set_uniform_f(uni_shade, - menu_shade);
-			
+	shader_set_uniform_f(uni_shade, - 0.6);
+	
 	draw_text(title_x, title_y, title);
 			
 	shader_reset();

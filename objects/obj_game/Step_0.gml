@@ -1,7 +1,4 @@
-/// change global variable upon mouse release
-if (mouse_check_button_released(mb_left)) {
-	global.mouse_activated = false;	
-}
+
 
 // reset button
 if (keyboard_check_pressed(ord("R"))) {

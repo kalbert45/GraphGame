@@ -11,11 +11,13 @@ else {
 	display_reset(display_aa, true);	
 }
 
-cursor_sprite = spr_cursor;
-
 graph = undefined;
 
-line_curve_asset = EaseCurves; // ease curve
+var line_curve_asset = EaseCurves; // ease curve
 line_curve_struct = animcurve_get(line_curve_asset);
-
 line_curve_speed = 0.05;
+
+var glow_curve_asset = SinCurve; // glow curve
+var glow_curve_struct = animcurve_get(glow_curve_asset);
+glow_curve_channel = animcurve_get_channel(glow_curve_struct, "Sin");		
+glow_curve_speed = 0.005;

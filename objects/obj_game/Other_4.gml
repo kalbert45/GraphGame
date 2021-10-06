@@ -6,6 +6,7 @@ global.cleared = false; // checks whether level was cleared
 
 graph_destroy(graph); // reset graph upon each room start
 
+
 clear_audio_played = false; // ugly way to make clear audio play once
 
 // number of vertices / edges (dependent on win condition) needed to win

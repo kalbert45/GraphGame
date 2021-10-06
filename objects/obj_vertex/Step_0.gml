@@ -1,26 +1,7 @@
 // Init local variables and calculations
-var v_prev = undefined; // previous vertex
 var range = 18; // Distance (in pixels) mouse must be from center of object before scaling begins
-var min_scale = 1; // Minimum scale
-var max_scale = 1.3; // Maximum scale
-var mouse_hover = point_distance(x, y, mouse_x, mouse_y) <= range; // Check if mouse is hovering
-if (global.selected == id) { // stay big if selected
-	var goal_scale = max_scale; // Calculate goal scale
-}
-else {
-	var goal_scale = (min_scale * !mouse_hover) + (max_scale * mouse_hover); // Calculate goal scale
-}
-var scale_spd = 0.1; // Speed of scaling
-
-// Apply index and scale
-if (id.activated) { // choose appropriate sprite
-	image_index = 1;
-}
-else {
-	image_index = mouse_hover;
-}
-image_xscale = lerp(image_xscale, goal_scale, scale_spd);
-image_yscale = lerp(image_yscale, goal_scale, scale_spd);
+mouse_hover = point_distance(x, y, mouse_x, mouse_y) <= range; // Check if mouse is hovering
+var v_prev = undefined; // previous vertex
 
 // vertices behave differently based on win condition
 if (obj_game.win_con == "hamiltonian") {

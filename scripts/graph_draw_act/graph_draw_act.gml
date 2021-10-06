@@ -1,6 +1,7 @@
 // draws activated edges for the graph
 // takes the graph (ds_map) and animation curve structure for the lines as arguments
 function graph_draw_act(graph, line_curve_struct){
+	var star_color = $D5F6FF;
 	// if empty, do nothing
 	if (ds_map_empty(graph)) {
 		return;	
@@ -22,8 +23,8 @@ function graph_draw_act(graph, line_curve_struct){
 			// get instances corresponding to labels k->j
 			// if cleared, draw all lime
 			if (global.cleared) {
-				draw_set_color(c_lime);	
-				draw_line_width(vert_k.x, vert_k.y, vert_j.x, vert_j.y, 5);
+				draw_set_color(c_white);	
+				draw_line_width(vert_k.x, vert_k.y, vert_j.x, vert_j.y, 4);
 			}
 			// if k is at front, draw from j to k
 			else if (obj_game.act_line[| 0].label == k) {
@@ -39,9 +40,10 @@ function graph_draw_act(graph, line_curve_struct){
 				var line_x = vert_j.x + (diff_x * val);
 				var line_y = vert_j.y + (diff_y * val);
 				
-				draw_set_color(c_orange);
+				draw_set_color(star_color);
 			
-				draw_line_width(vert_j.x, vert_j.y, line_x, line_y, 5);				
+				draw_line_width(vert_j.x, vert_j.y, line_x, line_y, 3);
+	
 			}
 			// if k is at back, draw k to j
 			else if (obj_game.act_line[| ds_list_size(obj_game.act_line)-1].label == j){
@@ -66,14 +68,20 @@ function graph_draw_act(graph, line_curve_struct){
 				var line_x = vert_k.x + (diff_x * val);
 				var line_y = vert_k.y + (diff_y * val);
 				
-				draw_set_color(c_orange);
+				draw_set_color(star_color);
+
 			
-				draw_line_width(vert_k.x, vert_k.y, line_x, line_y, 5);
+				draw_line_width(vert_k.x, vert_k.y, line_x, line_y, 3);
+
 			}
 			// otherwise, just draw line
 			else {
-				draw_set_color(c_orange);	
-				draw_line_width(vert_k.x, vert_k.y, vert_j.x, vert_j.y, 5);
+				draw_set_color(star_color);
+			
+		
+				
+				draw_line_width(vert_k.x, vert_k.y, vert_j.x, vert_j.y, 3);
+		
 			}
 		}
 	}
@@ -97,7 +105,9 @@ function graph_draw_act(graph, line_curve_struct){
 		var line_x = vert_k.x + (diff_x * val);
 		var line_y = vert_k.y + (diff_y * val);
 	
-		draw_set_color(c_orange);
-		draw_line_width(vert_k.x, vert_k.y, line_x, line_y, 5);
+		draw_set_color(star_color);
+
+		draw_line_width(vert_k.x, vert_k.y, line_x, line_y, 3);
+
 	}
 }

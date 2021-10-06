@@ -1,8 +1,8 @@
-global.settings = ds_map_create(); // settings
-#macro set		global.settings
+//global.settings = ds_map_create(); // settings
+//#macro set		global.settings
 
-ds_map_add(set, "SFX Volume", [1, [0,1]]);
-ds_map_add(set, "Music Volume", [1, [0,1]]);
+//ds_map_add(set, "SFX Volume", [1, [0,1]]);
+//ds_map_add(set, "Music Volume", [1, [0,1]]);
 
 /// @description variables
 num_levels = 20;
