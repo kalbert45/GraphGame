@@ -34,7 +34,7 @@ menu[0] = "Level select";
 
 submenu[4] = ["BACK"];
 submenu[3] = ["Reset Progress"];
-submenu[2] = ["Resolution:"];
+submenu[2] = ["Window size:"];
 submenu[1] = ["SFX Volume:", 1];
 submenu[0] = ["Music Volume:", 1];
 

@@ -17,7 +17,12 @@ if (room == room_start) {
 	//draw_set_color(c_black);
 	//draw_text(title_x - 5, title_y + 5, title);
 	draw_set_color(c_yellow);
+	shader_set(FontShader);
+	shader_set_uniform_f(uni_shade, - menu_shade);
+			
 	draw_text(title_x, title_y, title);
+			
+	shader_reset();
 	
 	//draw 'Options'
 	draw_set_font(OptionsFont);
@@ -101,10 +106,40 @@ if (room == room_start) {
 			}
 		}
 		else if (j == 2){ // resolution
+			// draw words "window size:"
 			var sub_xx = submenu_x - string_width(sub_txt)/2;
 			var sub_yy = submenu_y + j*gap;
 			draw_set_color(c_white);
 			draw_text(sub_xx, sub_yy, sub_txt);
+			
+			// create resolution changing option
+			sub_txt = string(obj_camera.window_sizes[obj_camera.current_window][0]) + " x " + string(obj_camera.window_sizes[obj_camera.current_window][1]);
+			sub_xx = submenu_x + string_width(sub_txt)/2 + 20;
+			
+			options_button_menu[j].y = sub_yy - string_height(sub_txt)/2;
+			options_button_menu[j].wl = sub_xx - string_width(sub_txt)/2;
+			options_button_menu[j].wr = sub_xx + string_width(sub_txt)/2;
+			options_button_menu[j].h = string_height(sub_txt);
+	
+			var sub_mouse_hover = mouse_y > options_button_menu[j].y && mouse_y < options_button_menu[j].y + 
+										options_button_menu[j].h && mouse_x < options_button_menu[j].wr && mouse_x > options_button_menu[j].wl;
+	
+			// draw submenu item
+			submenu_shade_curve_pos[j] = draw_menu_item(sub_xx, sub_yy, sub_txt, options_button_menu[j], curveStruct, submenu_shade_curve_pos[j], menu_shade_curve_speed, uni_shade, menu_shade, sub_mouse_hover, min_scale, max_scale, scale_spd);
+			if (sub_mouse_hover && menu_control) {
+				if (mouse_check_button_pressed(mb_left)) {
+					play_menu_select_sfx();
+					with (obj_camera) {
+						current_window = (current_window + 1) mod (max_window + 1);
+						
+						displayWidth = window_sizes[current_window][0];
+						displayHeight = window_sizes[current_window][1];
+
+						window_set_size(displayWidth, displayHeight);
+						surface_resize(application_surface, displayWidth, displayHeight);
+					}
+				}
+			}
 		}
 		else { // bgm and sfx
 			var sub_xx = submenu_x - string_width(sub_txt)/2;
