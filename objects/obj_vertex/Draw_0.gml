@@ -19,23 +19,28 @@ else {
 image_xscale = lerp(image_xscale, goal_scale, scale_spd);
 image_yscale = lerp(image_yscale, goal_scale, scale_spd);
 
-if (id == global.selected) {
-	glow_curve_pos = (glow_curve_pos + obj_game.glow_curve_speed) mod 1;	
-}
-else {
-	if (glow_curve_pos != 0.5) {
+var val = animcurve_channel_evaluate(obj_game.glow_curve_channel, glow_curve_pos);
+if (id.activated) {
+	if (id == global.selected || val != 0.5) {
 		glow_curve_pos = (glow_curve_pos + obj_game.glow_curve_speed) mod 1;	
 	}
 }
-
-var val = animcurve_channel_evaluate(obj_game.glow_curve_channel, glow_curve_pos);
-
-if (id.activated) {
-	gpu_set_blendmode(bm_add);
-	for (var c = 1; c < 2; c+= 0.1) {
-		draw_sprite_ext(sprite_index, image_index,x,y,c*image_xscale,c*image_yscale, image_angle,image_blend,val*0.1);
+else {
+	if (val != 0) {
+		if ((0.25 < glow_curve_pos) && (glow_curve_pos < 0.75)) {
+			glow_curve_pos += obj_game.glow_curve_speed;
+		}
+		else {
+			glow_curve_pos = (glow_curve_pos - obj_game.glow_curve_speed + 1) mod 1;	
+		}
 	}
-	gpu_set_blendmode(bm_normal);
 }
+
+gpu_set_blendmode(bm_add);
+for (var c = 1; c < 2; c+= 0.1) {
+	draw_sprite_ext(sprite_index, image_index,x,y,c*image_xscale,c*image_yscale, image_angle,image_blend,val*0.1);
+}
+gpu_set_blendmode(bm_normal);
+
 draw_self();
 

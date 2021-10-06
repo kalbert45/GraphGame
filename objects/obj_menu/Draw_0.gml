@@ -250,6 +250,7 @@ else {
 		if (mouse_check_button_pressed(mb_left)) { // click to select
 				play_menu_select_sfx();
 				menu_control = false;
+				global.level = 0;
 				transition_start(room_start, sq_fadeout, sq_fadein);
 		}
 	}
@@ -273,7 +274,8 @@ else {
 			if (mouse_check_button_pressed(mb_left)) { // click to select
 					play_menu_select_sfx();
 					menu_control = false;
-					transition_start(room+1, sq_fadeout, sq_fadein);
+					global.level++;
+					transition_start(room_level, sq_fadeout, sq_fadein);
 			}
 		}
 	}

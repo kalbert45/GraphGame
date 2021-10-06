@@ -22,6 +22,7 @@ function create_level1(){
 	graph_add_node(graph, 1010, 440, 13);
 
 	graph_add_edge(graph, 0, 1);
+	graph_add_edge(graph, 0, 8);
 	graph_add_edge(graph, 1, 2);
 	graph_add_edge(graph, 2, 3);
 	graph_add_edge(graph, 3, 0);

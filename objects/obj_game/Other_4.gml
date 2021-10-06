@@ -23,14 +23,26 @@ act_line = ds_list_create(); // points on activated line
 
 act_edge_count = 0; // number of activated edges
 
-if (room == room_level1) { // create level 1
+if (global.level == 1) { // create level 1
 	graph = create_level1();
 }
-else if (room == room_level2) { // create level 2
+else if (global.level == 2) { // create level 2
 	graph = create_level2();
 }
-else if (room == room_level3) { // create level 3
+else if (global.level == 3) { // create level 3
 	graph = create_level3();
+}
+else if (global.level == 4) { // create level 4
+	graph = create_level4();
+}
+else if (global.level == 5) { // create level 5
+	graph = create_level5();
+}
+else if (global.level == 6) { // create level 6
+	graph = create_level6();
+}
+else {
+	graph = ds_map_create();	
 }
 //else if (room == room_level4) { // create level 2
 //	graph = create_level4();

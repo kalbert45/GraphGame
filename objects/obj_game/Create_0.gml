@@ -11,6 +11,8 @@ else {
 	display_reset(display_aa, true);	
 }
 
+global.level = 0;
+
 graph = undefined;
 
 var line_curve_asset = EaseCurves; // ease curve

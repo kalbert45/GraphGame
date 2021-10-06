@@ -78,16 +78,34 @@ if (obj_game.win_con == "hamiltonian") {
 				global.mouse_activated = true;
 				ds_list_add(obj_game.act_line, id);
 			}
-			// select vertex if it is an endpoint
-			else if (obj_game.act_line[| 0] == id || obj_game.act_line[| ds_list_size(obj_game.act_line)-1] == id) {
+			// check if cleared, otherwise select endpoint
+			else if (obj_game.act_line[| 0] == id) {
+				if (ds_list_size(obj_game.act_line) == obj_game.win_num) {
+					if (global.selected == obj_game.act_line[| ds_list_size(obj_game.act_line)-1])	{
+						graph_add_act_edge(obj_game.graph, global.selected.label, label);
+						ds_list_add(obj_game.act_line, id);
+						ds_list_add(id.inbound_v, global.selected.label);
+					}
+				}
 				global.selected = id;
 				global.mouse_activated = true;
 			}
+			else if (obj_game.act_line[| ds_list_size(obj_game.act_line)-1] == id) {
+				if (ds_list_size(obj_game.act_line) == obj_game.win_num) {
+					if (global.selected == obj_game.act_line[| 0])	{
+						graph_add_act_edge(obj_game.graph, label, global.selected.label);
+						ds_list_insert(obj_game.act_line, 0, id);
+						ds_list_add(global.selected.inbound_v, label);
+					}
+				}
+				global.selected = id;
+				global.mouse_activated = true;
+			}
+			
 			// only activate unactivated vertices and edges adjacent to selected vertex
 			if (!id.activated && graph_check_adjacent(obj_game.graph, id)) {
 				id.activated++;
 				global.v_prev_deselect = undefined;
-				obj_game.act_edge_count++;
 				if (global.selected == obj_game.act_line[| 0]) {
 					graph_add_act_edge(obj_game.graph, label, global.selected.label);
 					ds_list_insert(obj_game.act_line, 0, id);
@@ -110,6 +128,26 @@ if (obj_game.win_con == "hamiltonian") {
 		// left hold activates and selects vertex, adds activated edge
 		// only if its adjacent to selected
 		if (mouse_check_button(mb_left)) {
+			// check if cleared
+			if (obj_game.act_line[| 0] == id) {
+				if (ds_list_size(obj_game.act_line) == obj_game.win_num) {
+					if (global.selected == obj_game.act_line[| ds_list_size(obj_game.act_line)-1])	{
+						graph_add_act_edge(obj_game.graph, global.selected.label, label);
+						ds_list_add(obj_game.act_line, id);
+						ds_list_add(id.inbound_v, global.selected.label);
+					}
+				}
+			}
+			else if (obj_game.act_line[| ds_list_size(obj_game.act_line)-1] == id) {
+				if (ds_list_size(obj_game.act_line) == obj_game.win_num) {
+					if (global.selected == obj_game.act_line[| 0])	{
+						graph_add_act_edge(obj_game.graph, label, global.selected.label);
+						ds_list_insert(obj_game.act_line, 0, id);
+						ds_list_add(global.selected.inbound_v, label);
+					}
+				}
+			}
+			
 			if (!id.activated && graph_check_adjacent(obj_game.graph, id)) {
 				id.activated++;
 				global.v_prev_deselect = undefined;

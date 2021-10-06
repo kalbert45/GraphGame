@@ -46,7 +46,7 @@
     "path": "folders/Rooms.yy",
   },
   "resourceVersion": "1.0",
-  "name": "room_level3",
+  "name": "room_level",
   "tags": [],
   "resourceType": "GMRoom",
 }

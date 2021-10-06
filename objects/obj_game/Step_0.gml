@@ -15,7 +15,7 @@ if (keyboard_check_pressed(ord("R"))) {
 }
 
 if (win_con == "hamiltonian") {
-	if (ds_list_size(act_line) == win_num) {
+	if ((ds_list_size(act_line)-1 == win_num) && (act_line[| 0] == act_line[| ds_list_size(act_line) - 1])) {
 		global.cleared = true;	
 	}
 }

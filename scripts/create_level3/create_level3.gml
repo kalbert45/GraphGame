@@ -7,12 +7,12 @@ function create_level3(){
 	
 	var graph = graph_create();
 
-	graph_add_node(graph, 960, 640, 0);
-	graph_add_node(graph, 1260, 590, 1);
-	graph_add_node(graph, 660, 590, 2);
-	graph_add_node(graph, 860, 340, 3);
-	graph_add_node(graph, 1060, 340, 4);
-	graph_add_node(graph, 960, 890, 5);
+	graph_add_node(graph, 960, 540, 0);
+	graph_add_node(graph, 1260, 490, 1);
+	graph_add_node(graph, 660, 490, 2);
+	graph_add_node(graph, 860, 240, 3);
+	graph_add_node(graph, 1060, 240, 4);
+	graph_add_node(graph, 960, 790, 5);
 
 	graph_add_edge(graph, 0, 1);
 	graph_add_edge(graph, 0, 2);
