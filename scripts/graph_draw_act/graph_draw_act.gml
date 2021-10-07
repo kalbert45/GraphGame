@@ -9,6 +9,7 @@ function graph_draw_act(graph, line_curve_struct){
 	else {
 		var star_color = $D5F6FF;
 	}
+	
 	// if empty, do nothing
 	if (ds_map_empty(graph)) {
 		return;	
@@ -28,54 +29,67 @@ function graph_draw_act(graph, line_curve_struct){
 			var vert_k = graph[? k];
 			var vert_j = graph[? j];
 			// get instances corresponding to labels k->j
-			// if cleared, draw all lime
-			if (global.cleared) {
-				draw_set_color(c_white);	
-				draw_line_width(vert_k.x, vert_k.y, vert_j.x, vert_j.y, 4);
-			}
 			// if k is at front, draw from j to k
-			else if (obj_game.act_line[| 0].label == k) {
+			if (obj_game.act_line[| 0].label == k) {
 				var diff_x = vert_k.x - vert_j.x;
 				var diff_y = vert_k.y - vert_j.y;
 				
 				var curveChannel = animcurve_get_channel(line_curve_struct, "Line");
 				
-				
-				var val = animcurve_channel_evaluate(curveChannel, vert_k.line_curve_pos[i]);
-				
+				if (obj_game.act_line[| ds_list_size(obj_game.act_line) - 1].label == k && global.v_prev_select.label == j) {
+					var val = animcurve_channel_evaluate(curveChannel, obj_game.line_curve_pos_buffer);					
+				}
+				else {
+					var val = animcurve_channel_evaluate(curveChannel, vert_k.line_curve_pos[i]);
+				}
 				
 				var line_x = vert_j.x + (diff_x * val);
 				var line_y = vert_j.y + (diff_y * val);
 				
-				draw_set_color(star_color);
+				if (global.cleared) {
+					draw_set_color(c_white);
+				}
+				else {
+					draw_set_color(star_color);
+				}
 			
 				draw_line_width(vert_j.x, vert_j.y, line_x, line_y, 3);
 	
 			}
-			// if k is at back, draw k to j
+			// if j is at back, draw k to j
 			else if (obj_game.act_line[| ds_list_size(obj_game.act_line)-1].label == j){
 				var diff_x = vert_j.x - vert_k.x;
 				var diff_y = vert_j.y - vert_k.y;
 				
 				var curveChannel = animcurve_get_channel(line_curve_struct, "Line");
 				
-				var index = ds_list_find_index(vert_j.inbound_v, k);
-				if (index == -1) {
-					show_debug_message("index is -1");
-					continue;
-				}
-				else if (index < array_length(vert_j.line_curve_pos)) {
-					var val = animcurve_channel_evaluate(curveChannel, vert_j.line_curve_pos[index]);
+				if (obj_game.act_line[| 0].label == j && global.v_prev_select.label == k) {
+					var val = animcurve_channel_evaluate(curveChannel, obj_game.line_curve_pos_buffer);
 				}
 				else {
-					show_debug_message("error. index: " + string(index));
-					var val = 1;	
+					var index = ds_list_find_index(vert_j.inbound_v, k);
+					if (index == -1) {
+						show_debug_message("index is -1");
+						continue;
+					}
+					else if (index < array_length(vert_j.line_curve_pos)) {
+						var val = animcurve_channel_evaluate(curveChannel, vert_j.line_curve_pos[index]);
+					}
+					else {
+						show_debug_message("error. index: " + string(index));
+						var val = 1;	
+					}
 				}
 				
 				var line_x = vert_k.x + (diff_x * val);
 				var line_y = vert_k.y + (diff_y * val);
 				
-				draw_set_color(star_color);
+				if (global.cleared) {
+					draw_set_color(c_white);
+				}
+				else {
+					draw_set_color(star_color);
+				}
 
 			
 				draw_line_width(vert_k.x, vert_k.y, line_x, line_y, 3);
@@ -83,9 +97,13 @@ function graph_draw_act(graph, line_curve_struct){
 			}
 			// otherwise, just draw line
 			else {
-				draw_set_color(star_color);
+				if (global.cleared) {
+					draw_set_color(c_white);
+				}
+				else {
+					draw_set_color(star_color);
+				}
 			
-		
 				
 				draw_line_width(vert_k.x, vert_k.y, vert_j.x, vert_j.y, 3);
 		
@@ -102,7 +120,10 @@ function graph_draw_act(graph, line_curve_struct){
 		var diff_y = vert_j.y - vert_k.y;
 		
 		var curveChannel = animcurve_get_channel(line_curve_struct, "Line");
-		if (vert_j.activated < array_length(vert_j.line_curve_pos)) {
+		if (vert_j == obj_game.act_line[| ds_list_size(obj_game.act_line) - 1]) {
+			var val = animcurve_channel_evaluate(curveChannel, obj_game.line_curve_pos_buffer);
+		}
+		else if (vert_j.activated < array_length(vert_j.line_curve_pos)) {
 			var val = animcurve_channel_evaluate(curveChannel, vert_j.line_curve_pos[vert_j.activated]);
 		}
 		else {

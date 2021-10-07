@@ -1,11 +1,11 @@
 /// initialize global variables
 global.selected = undefined; // selected vertex
 global.v_prev_deselect = undefined; // previous deselected vertex for drawing waning line
+global.v_prev_select = undefined; // previous selected vertex for drawing waxing line
 global.mouse_activated = false; // checks whether mouse is held down after clicking on vertex
 global.cleared = false; // checks whether level was cleared
 
 graph_destroy(graph); // reset graph upon each room start
-
 
 clear_audio_played = false; // ugly way to make clear audio play once
 

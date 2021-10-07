@@ -15,6 +15,8 @@ global.level = 0;
 
 graph = undefined;
 
+line_curve_pos_buffer = 0; // for animation in the case both endpoints are the same
+
 var line_curve_asset = EaseCurves; // ease curve
 line_curve_struct = animcurve_get(line_curve_asset);
 line_curve_speed = 0.05;

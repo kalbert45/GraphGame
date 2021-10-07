@@ -36,6 +36,7 @@ if (obj_game.win_con == "hamiltonian") {
 				id.activated--; // deactivate
 				ds_list_delete(obj_game.act_line, 0); // active line -> empty
 				global.selected = undefined; // deselect
+				global.v_prev_select = undefined;
 			}
 			// check if front endpoint
 			else if (obj_game.act_line[| 0] == id) {
@@ -47,6 +48,7 @@ if (obj_game.win_con == "hamiltonian") {
 				obj_game.act_edge_count--;
 				global.selected = v_prev;
 				global.v_prev_deselect = id;
+				global.v_prev_select = undefined;
 				
 				var index = ds_list_find_index(v_prev.inbound_v, label);
 				ds_list_delete(v_prev.inbound_v, index);
@@ -62,6 +64,7 @@ if (obj_game.win_con == "hamiltonian") {
 				obj_game.act_edge_count--;
 				global.selected = v_prev;
 				global.v_prev_deselect = id;
+				global.v_prev_select = undefined;
 				
 				var index = ds_list_find_index(id.inbound_v, v_prev.label);
 				ds_list_delete(id.inbound_v, index);
@@ -85,6 +88,7 @@ if (obj_game.win_con == "hamiltonian") {
 						graph_add_act_edge(obj_game.graph, global.selected.label, label);
 						ds_list_add(obj_game.act_line, id);
 						ds_list_add(id.inbound_v, global.selected.label);
+						global.v_prev_select = global.selected;
 					}
 				}
 				global.selected = id;
@@ -96,6 +100,7 @@ if (obj_game.win_con == "hamiltonian") {
 						graph_add_act_edge(obj_game.graph, label, global.selected.label);
 						ds_list_insert(obj_game.act_line, 0, id);
 						ds_list_add(global.selected.inbound_v, label);
+						global.v_prev_select = global.selected;
 					}
 				}
 				global.selected = id;
@@ -117,6 +122,7 @@ if (obj_game.win_con == "hamiltonian") {
 					ds_list_add(id.inbound_v, global.selected.label);
 				}				
 				play_graph_sfx();
+				global.v_prev_select = global.selected;
 				global.selected = id;
 				global.mouse_activated = true;
 			}
@@ -164,6 +170,7 @@ if (obj_game.win_con == "hamiltonian") {
 				}	
 				
 				play_graph_sfx();
+				global.v_prev_select = global.selected;
 				global.selected = id;
 			}
 		}
@@ -199,6 +206,7 @@ else if (obj_game.win_con == "euler") {
 				id.activated--; // deactivate
 				ds_list_delete(obj_game.act_line, 0); // active line -> empty
 				global.selected = undefined; // deselect
+				global.v_prev_select = undefined;
 			}
 			// check if front endpoint
 			else if (obj_game.act_line[| 0] == id) {
@@ -210,6 +218,7 @@ else if (obj_game.win_con == "euler") {
 				obj_game.act_edge_count--;
 				global.selected = v_prev;
 				global.v_prev_deselect = id;
+				global.v_prev_select = undefined;
 				
 				var index = ds_list_find_index(v_prev.inbound_v, label);
 				ds_list_delete(v_prev.inbound_v, index);
@@ -225,6 +234,7 @@ else if (obj_game.win_con == "euler") {
 				obj_game.act_edge_count--;
 				global.selected = v_prev;
 				global.v_prev_deselect = id;
+				global.v_prev_select = undefined;
 				
 				var index = ds_list_find_index(id.inbound_v, v_prev.label);
 				ds_list_delete(id.inbound_v, index);
@@ -262,6 +272,7 @@ else if (obj_game.win_con == "euler") {
 					ds_list_add(id.inbound_v, global.selected.label);
 				}				
 				play_graph_sfx();
+				global.v_prev_select = global.selected;
 				global.selected = id;
 				global.mouse_activated = true;
 			}
@@ -289,6 +300,7 @@ else if (obj_game.win_con == "euler") {
 				}	
 				
 				play_graph_sfx();
+				global.v_prev_select = global.selected;
 				global.selected = id;
 			}
 		}
