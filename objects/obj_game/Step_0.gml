@@ -1,9 +1,13 @@
 // animation curve position calculations for edge case, endpoints are the same
-if (line_curve_pos_buffer < 1 && act_line[| 0] == act_line[| ds_list_size(act_line) - 1]) {
-	line_curve_pos_buffer += line_curve_speed;
+if (act_line[| 0] == act_line[| ds_list_size(act_line) - 1]) {
+	if (line_curve_pos_buffer < 1) {
+		line_curve_pos_buffer += line_curve_speed;
+	}
 }
-else if (line_curve_pos_buffer > 0) {
-	line_curve_pos_buffer -= line_curve_speed;	
+else {
+	if (line_curve_pos_buffer > 0) {
+		line_curve_pos_buffer -= line_curve_speed;	
+	}
 }
 
 // reset button

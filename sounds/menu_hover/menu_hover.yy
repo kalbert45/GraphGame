@@ -1,14 +1,14 @@
 {
   "compression": 0,
-  "volume": 0.1,
+  "volume": 0.2,
   "preload": false,
   "bitRate": 128,
   "sampleRate": 44100,
   "type": 0,
   "bitDepth": 1,
   "audioGroupId": {
-    "name": "ag_SFX",
-    "path": "audiogroups/ag_SFX",
+    "name": "audiogroup_default",
+    "path": "audiogroups/audiogroup_default",
   },
   "soundFile": "menu_hover.wav",
   "duration": 3.0,

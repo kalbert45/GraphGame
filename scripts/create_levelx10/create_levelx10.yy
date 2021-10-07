@@ -6,7 +6,7 @@
     "path": "folders/Scripts/Level creation scripts.yy",
   },
   "resourceVersion": "1.0",
-  "name": "create_level5",
+  "name": "create_levelx10",
   "tags": [],
   "resourceType": "GMScript",
 }

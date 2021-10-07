@@ -199,7 +199,7 @@ else if (room == room_levelselect) {
 	
 	back_shade_curve_pos = draw_menu_item(xx, yy, txt, back_button, curveStruct, back_shade_curve_pos, menu_shade_curve_speed, uni_shade, menu_shade, mouse_hover, min_scale, max_scale, scale_spd);
 	
-	if (mouse_hover && menu_control) {
+	if (mouse_hover && menu_control && !global.midTransition) {
 		if (mouse_check_button_pressed(mb_left)) { // click to select
 				play_menu_select_sfx();
 				menu_control = false;
@@ -222,7 +222,7 @@ else if (room == room_levelselect) {
 		var mouse_hover = mouse_y > level_buttons[i].y && mouse_y < level_buttons[i].y + 
 									level_buttons[i].h && mouse_x < level_buttons[i].wr && mouse_x > level_buttons[i].wl;
 							
-		if (mouse_hover && mouse_check_button_pressed(mb_left)) {
+		if (mouse_hover && menu_control && !global.midTransition && mouse_check_button_pressed(mb_left)) {
 			select = i+1;
 		}
 	
@@ -233,7 +233,7 @@ else if (room == room_levelselect) {
 }
 else {
 	// make menu button; currently back button
-	var txt = "MENU";
+	var txt = "MENU\nLevel: " + string(current_level);
 	var xx = 100;
 	var yy = 100;
 	back_button.y = yy - string_height(txt)/2;
@@ -246,7 +246,7 @@ else {
 	
 	back_shade_curve_pos = draw_menu_item(xx, yy, txt, back_button, curveStruct, back_shade_curve_pos, menu_shade_curve_speed, uni_shade, menu_shade, mouse_hover, min_scale, max_scale, scale_spd);
 	
-	if (mouse_hover && menu_control) {
+	if (mouse_hover && menu_control && !global.midTransition) {
 		if (mouse_check_button_pressed(mb_left)) { // click to select
 				play_menu_select_sfx();
 				menu_control = false;
@@ -270,7 +270,7 @@ else {
 	
 		next_shade_curve_pos = draw_menu_item(xx, yy, txt, next_button, curveStruct, next_shade_curve_pos, menu_shade_curve_speed, uni_shade, menu_shade, mouse_hover, min_scale, max_scale, scale_spd);
 	
-		if (mouse_hover && menu_control) {
+		if (mouse_hover && menu_control && !global.midTransition) {
 			if (mouse_check_button_pressed(mb_left)) { // click to select
 					play_menu_select_sfx();
 					menu_control = false;

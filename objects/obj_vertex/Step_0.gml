@@ -82,7 +82,7 @@ if (obj_game.win_con == "hamiltonian") {
 				ds_list_add(obj_game.act_line, id);
 			}
 			// check if cleared, otherwise select endpoint
-			else if (obj_game.act_line[| 0] == id) {
+			else if (obj_game.act_line[| 0] == id && graph_check_adjacent(obj_game.graph, id)) {
 				if (ds_list_size(obj_game.act_line) == obj_game.win_num) {
 					if (global.selected == obj_game.act_line[| ds_list_size(obj_game.act_line)-1])	{
 						graph_add_act_edge(obj_game.graph, global.selected.label, label);
@@ -94,7 +94,7 @@ if (obj_game.win_con == "hamiltonian") {
 				global.selected = id;
 				global.mouse_activated = true;
 			}
-			else if (obj_game.act_line[| ds_list_size(obj_game.act_line)-1] == id) {
+			else if (obj_game.act_line[| ds_list_size(obj_game.act_line)-1] == id && graph_check_adjacent(obj_game.graph, id)) {
 				if (ds_list_size(obj_game.act_line) == obj_game.win_num) {
 					if (global.selected == obj_game.act_line[| 0])	{
 						graph_add_act_edge(obj_game.graph, label, global.selected.label);

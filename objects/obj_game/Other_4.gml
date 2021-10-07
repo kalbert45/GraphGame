@@ -23,39 +23,40 @@ act_line = ds_list_create(); // points on activated line
 
 act_edge_count = 0; // number of activated edges
 
-if (global.level == 1) { // create level 1
-	graph = create_level1();
+// create level
+switch (global.level) {
+	case 1:
+		graph = create_level1(); break;
+	case 2:
+		graph = create_level2(); break;
+	case 3:
+		graph = create_level3(); break;
+	case 4:
+		graph = create_level4(); break;
+	case 5:
+		graph = create_level5(); break;
+	case 6:
+		graph = create_level6(); break;
+	case 7:
+		graph = create_level7(); break;
+	case 8:
+		graph = create_level8(); break;
+	case 9:
+		graph = create_level9(); break;
+	case 10:
+		graph = create_level10(); break;
+	case 11:
+		graph = create_level11(); break;
+	case 12:
+		graph = create_level12(); break;
+	case 13:
+		graph = create_level13(); break;
+	case 14:
+		graph = create_level14(); break;
+	default:
+		graph = ds_map_create();
 }
-else if (global.level == 2) { // create level 2
-	graph = create_level2();
-}
-else if (global.level == 3) { // create level 3
-	graph = create_level3();
-}
-else if (global.level == 4) { // create level 4
-	graph = create_level4();
-}
-else if (global.level == 5) { // create level 5
-	graph = create_level5();
-}
-else if (global.level == 6) { // create level 6
-	graph = create_level6();
-}
-else if (global.level == 7) { // create level 7
-	graph = create_level7();
-}
-else if (global.level == 8) { // create level 8
-	graph = create_level8();
-}
-else if (global.level == 9) { // create level 9
-	graph = create_level9();
-}
-else if (global.level == 10) { // create level 10
-	graph = create_level10();
-}
-else {
-	graph = ds_map_create();	
-}
+
 //else if (room == room_level4) { // create level 2
 //	graph = create_level4();
 //}
