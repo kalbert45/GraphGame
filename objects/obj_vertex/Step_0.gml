@@ -141,6 +141,7 @@ if (obj_game.win_con == "hamiltonian") {
 						graph_add_act_edge(obj_game.graph, global.selected.label, label);
 						ds_list_add(obj_game.act_line, id);
 						ds_list_add(id.inbound_v, global.selected.label);
+						global.v_prev_select = global.selected;
 					}
 				}
 			}
@@ -150,6 +151,7 @@ if (obj_game.win_con == "hamiltonian") {
 						graph_add_act_edge(obj_game.graph, label, global.selected.label);
 						ds_list_insert(obj_game.act_line, 0, id);
 						ds_list_add(global.selected.inbound_v, label);
+						global.v_prev_select = global.selected;
 					}
 				}
 			}
