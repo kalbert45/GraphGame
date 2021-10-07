@@ -55,6 +55,7 @@
     {"id":{"name":"obj_camera","path":"objects/obj_camera/obj_camera.yy",},"order":2,},
     {"id":{"name":"menu_selectBflat","path":"sounds/menu_selectBflat/menu_selectBflat.yy",},"order":11,},
     {"id":{"name":"create_level4","path":"scripts/create_level4/create_level4.yy",},"order":4,},
+    {"id":{"name":"spr_vertex_ham","path":"sprites/spr_vertex_ham/spr_vertex_ham.yy",},"order":3,},
     {"id":{"name":"graph_act_clear","path":"scripts/graph_act_clear/graph_act_clear.yy",},"order":0,},
     {"id":{"name":"draw_menu_item","path":"scripts/draw_menu_item/draw_menu_item.yy",},"order":0,},
     {"id":{"name":"menu_selectAflat","path":"sounds/menu_selectAflat/menu_selectAflat.yy",},"order":10,},

@@ -30,7 +30,7 @@ if (obj_game.win_con == "hamiltonian") {
 	else if (mouse_hover) {
 		// right click deactivates vertex and edge if endpoint
 		// selects adjacent activated vertex, if it exists
-		if (mouse_check_button(mb_right)) {
+		if (mouse_check_button_pressed(mb_right)) {
 			// check if solo point
 			if (ds_list_size(obj_game.act_line) == 1 && obj_game.act_line[| 0] == id) {
 				id.activated--; // deactivate
@@ -193,7 +193,7 @@ else if (obj_game.win_con == "euler") {
 	else if (mouse_hover) {
 		// right click deactivates vertex and edge if endpoint
 		// selects adjacent activated vertex, if it exists
-		if (mouse_check_button(mb_right)) {
+		if (mouse_check_button_pressed(mb_right)) {
 			// check if solo point
 			if (ds_list_size(obj_game.act_line) == 1 && obj_game.act_line[| 0] == id) {
 				id.activated--; // deactivate

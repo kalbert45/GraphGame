@@ -1,7 +1,14 @@
 // draws activated edges for the graph
 // takes the graph (ds_map) and animation curve structure for the lines as arguments
 function graph_draw_act(graph, line_curve_struct){
-	var star_color = $D5F6FF;
+	if (obj_game.win_con == "hamiltonian") {
+		//var star_color = $D5F6FF;
+		var star_color = $AAAAFF;
+		//var star_color = $FFEEAA;		
+	}
+	else {
+		var star_color = $D5F6FF;
+	}
 	// if empty, do nothing
 	if (ds_map_empty(graph)) {
 		return;	

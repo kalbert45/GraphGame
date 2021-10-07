@@ -50,6 +50,9 @@ else if (global.level == 8) { // create level 8
 else if (global.level == 9) { // create level 9
 	graph = create_level9();
 }
+else if (global.level == 10) { // create level 10
+	graph = create_level10();
+}
 else {
 	graph = ds_map_create();	
 }
