@@ -5,7 +5,7 @@
 //ds_map_add(set, "Music Volume", [1, [0,1]]);
 
 /// @description variables
-num_levels = 20;
+num_levels = 25;
 
 var curveAsset = EaseCurves; // ease curve
 curveStruct = animcurve_get(curveAsset);

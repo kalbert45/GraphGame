@@ -18,11 +18,13 @@ if (room == room_start) {
 	//draw_text(title_x - 5, title_y + 5, title);
 	draw_set_color(c_yellow);
 	shader_set(FontShader);
-	shader_set_uniform_f(uni_shade, - 0.6);
+	shader_set_uniform_f(uni_shade, - 0.8);
 	
 	draw_text(title_x, title_y, title);
 			
 	shader_reset();
+	//draw_sprite(spr_vertex, 0, title_x, title_y);
+	
 	
 	//draw 'Options'
 	draw_set_font(OptionsFont);
@@ -130,7 +132,7 @@ if (room == room_start) {
 				if (mouse_check_button_pressed(mb_left)) {
 					play_menu_select_sfx();
 					with (obj_camera) {
-						current_window = (current_window + 1) mod (max_window + 1);
+						current_window = ((current_window - 1) + (max_window + 1)) mod (max_window + 1);
 						
 						displayWidth = window_sizes[current_window][0];
 						displayHeight = window_sizes[current_window][1];
@@ -212,8 +214,8 @@ else if (room == room_levelselect) {
 		var j = i div 10;
 		
 		var txt = string(i+1);
-		var xx = menu_x - 480 + (i mod 10)*gap;
-		var yy = menu_y - 320 + j*gap;
+		var xx = menu_x - 360 + (i mod 10)*gap;
+		var yy = menu_y - 480 + j*gap;
 		level_buttons[i].y = yy - string_height(txt)/2;
 		level_buttons[i].wl = xx - string_width(txt)/2;
 		level_buttons[i].wr = xx + string_width(txt)/2;

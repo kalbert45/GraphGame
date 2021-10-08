@@ -12,6 +12,6 @@ else {
 }
 gpu_set_blendmode(bm_add);
 for (var c = 1; c < 2; c+= 0.1) {
-	draw_sprite_ext(spr_vertex, 0,mouse_x,mouse_y,c*2*mouse_curve_pos,c*2*mouse_curve_pos, 0,image_blend, mouse_curve_pos*0.01);
+	draw_sprite_ext(spr_vertex, 0,mouse_x,mouse_y,c*2*mouse_curve_pos,c*2*mouse_curve_pos, 0,image_blend, mouse_curve_pos*0.05);
 }
 gpu_set_blendmode(bm_normal);

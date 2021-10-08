@@ -53,6 +53,10 @@ switch (global.level) {
 		graph = create_level13(); break;
 	case 14:
 		graph = create_level14(); break;
+	case 15:
+		graph = create_level15(); break;
+	case 16:
+		graph = create_level16(); break;
 	default:
 		graph = ds_map_create();
 }
