@@ -199,8 +199,9 @@ else if (room == room_levelselect) {
 	var mouse_hover = mouse_y > back_button.y && mouse_y < back_button.y + 
 								back_button.h && mouse_x < back_button.wr && mouse_x > back_button.wl;
 	
+
 	back_shade_curve_pos = draw_menu_item(xx, yy, txt, back_button, curveStruct, back_shade_curve_pos, menu_shade_curve_speed, uni_shade, menu_shade, mouse_hover, min_scale, max_scale, scale_spd);
-	
+
 	if (mouse_hover && menu_control && !global.midTransition) {
 		if (mouse_check_button_pressed(mb_left)) { // click to select
 				play_menu_select_sfx();
@@ -215,22 +216,27 @@ else if (room == room_levelselect) {
 		
 		var txt = string(i+1);
 		var xx = menu_x - 360 + (i mod 10)*gap;
-		var yy = menu_y - 480 + j*gap;
-		level_buttons[i].y = yy - string_height(txt)/2;
-		level_buttons[i].wl = xx - string_width(txt)/2;
-		level_buttons[i].wr = xx + string_width(txt)/2;
-		level_buttons[i].h = string_height(txt);
+		var yy = menu_y - 360 + j*gap;
+		level_buttons[i].y = yy - gap/4;
+		level_buttons[i].wl = xx - gap/4;
+		level_buttons[i].wr = xx + gap/4;
+		level_buttons[i].h = gap/2;
 	
 		var mouse_hover = mouse_y > level_buttons[i].y && mouse_y < level_buttons[i].y + 
 									level_buttons[i].h && mouse_x < level_buttons[i].wr && mouse_x > level_buttons[i].wl;
-							
+		draw_set_font(LevelFont);
+		level_shade_curve_pos[i] = draw_level_item(xx, yy, txt, level_buttons[i], curveStruct, level_shade_curve_pos[i], menu_shade_curve_speed, uni_shade, menu_shade, mouse_hover, min_scale, max_scale, scale_spd);
+		draw_set_font(MenuFont);
 		if (mouse_hover && menu_control && !global.midTransition && mouse_check_button_pressed(mb_left)) {
+			play_graph_sfx();
 			select = i+1;
 		}
 	
 		//temporary code
-		draw_set_color(c_white);
-		draw_text(xx, yy, txt);
+		//draw_set_color($FFEEAA);
+		//draw_sprite_ext(spr_vertex_blue, 0, xx, yy, 1.5, 1.5, 0, image_blend, 0.8);
+		//draw_text(xx, yy, txt);
+
 	}
 }
 else {

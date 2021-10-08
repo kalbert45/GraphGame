@@ -5,7 +5,6 @@ global.v_prev_select = undefined; // previous selected vertex for drawing waxing
 global.mouse_activated = false; // checks whether mouse is held down after clicking on vertex
 global.cleared = false; // checks whether level was cleared
 
-graph_destroy(graph); // reset graph upon each room start
 
 clear_audio_played = false; // ugly way to make clear audio play once
 
@@ -57,6 +56,24 @@ switch (global.level) {
 		graph = create_level15(); break;
 	case 16:
 		graph = create_level16(); break;
+	case 17:
+		graph = create_level17(); break;
+	case 18:
+		graph = create_level18(); break;
+	case 19:
+		graph = create_level19(); break;
+	case 20:
+		graph = create_level20(); break;
+	case 21:
+		graph = create_level21(); break;
+	case 22:
+		graph = create_level22(); break;
+	case 23:
+		graph = create_level23(); break;
+	case 24:
+		graph = create_level24(); break;
+	case 25:
+		graph = create_level25(); break;
 	default:
 		graph = ds_map_create();
 }

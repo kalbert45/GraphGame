@@ -15,6 +15,7 @@ camera_curve_speed = 0.016;
 
 menu_shade_curve_pos[2] = 0;
 submenu_shade_curve_pos[4] = 0;
+level_shade_curve_pos[num_levels-1] = 0;
 back_shade_curve_pos = 0;
 next_shade_curve_pos = 0;
 

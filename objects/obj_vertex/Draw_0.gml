@@ -1,6 +1,7 @@
 /// draw, scale sprite, dynamic glow on select, normal on activate
 var min_scale = 1; // Minimum scale
 var max_scale = 1.3; // Maximum scale
+var mouse_hover = position_meeting(mouse_x, mouse_y, id); // Check if mouse is hovering
 if (global.selected == id) { // stay big if selected
 	var goal_scale = max_scale; // Calculate goal scale
 }

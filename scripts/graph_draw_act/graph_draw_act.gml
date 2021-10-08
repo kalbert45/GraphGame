@@ -36,7 +36,7 @@ function graph_draw_act(graph, line_curve_struct){
 				
 				var curveChannel = animcurve_get_channel(line_curve_struct, "Line");
 				
-				if (obj_game.act_line[| ds_list_size(obj_game.act_line) - 1].label == k && global.v_prev_select.label == j) {
+				if (obj_game.act_line[| ds_list_size(obj_game.act_line) - 1].label == k && !is_undefined(global.v_prev_select) && global.v_prev_select.label == j) {
 					var val = animcurve_channel_evaluate(curveChannel, obj_game.line_curve_pos_buffer);					
 				}
 				else {
@@ -63,7 +63,7 @@ function graph_draw_act(graph, line_curve_struct){
 				
 				var curveChannel = animcurve_get_channel(line_curve_struct, "Line");
 				
-				if (obj_game.act_line[| 0].label == j && global.v_prev_select.label == k) {
+				if (obj_game.act_line[| 0].label == j && !is_undefined(global.v_prev_select) && global.v_prev_select.label == k) {
 					var val = animcurve_channel_evaluate(curveChannel, obj_game.line_curve_pos_buffer);
 				}
 				else {
