@@ -102,7 +102,7 @@ if (room == room_start) {
 	draw_text(xx, yy, txt);
 	
 	draw_set_font(CreditsFont);
-	var txt = "Johan Aakerlund - Comfortaa font";
+	var txt = "Vadim Chaimovich & musopen.org - Nocturne in E flat major, op.9 no.2";
 	var xx = submenu_x + 1920;
 	var yy = submenu_y +290;
 	draw_set_color(c_white);
@@ -129,6 +129,12 @@ if (room == room_start) {
 	var txt = "Alan ViSTa - BellsEbuth plugin";
 	var xx = submenu_x + 1920;
 	var yy = submenu_y +490;
+	draw_set_color(c_white);
+	draw_text(xx, yy, txt);
+	
+	var txt = "Johan Aakerlund - Comfortaa font";
+	var xx = submenu_x + 1920;
+	var yy = submenu_y +540;
 	draw_set_color(c_white);
 	draw_text(xx, yy, txt);
 	
