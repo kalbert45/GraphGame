@@ -1,5 +1,6 @@
 // Init local variables and calculations
-
+shader_curve_pos[0] = clamp(shader_curve_pos[0], 0, 1);
+shader_curve_pos[1] = clamp(shader_curve_pos[1], 0, 1);
 // vertices behave differently based on win condition
 if (obj_game.win_con == "hamiltonian") {
 	

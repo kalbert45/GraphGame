@@ -32,7 +32,7 @@
     "spriteId": {"name":"spr_vertex_ham","path":"sprites/spr_vertex_ham/spr_vertex_ham.yy",},
     "timeUnits": 1,
     "playback": 1,
-    "playbackSpeed": 30.0,
+    "playbackSpeed": 60.0,
     "playbackSpeedType": 0,
     "autoRecord": true,
     "volume": 1.0,

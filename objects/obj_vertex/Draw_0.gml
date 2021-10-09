@@ -37,11 +37,39 @@ else {
 	}
 }
 
+if (global.cleared) {
+	shader_curve_pos[0] -= obj_game.shader_curve_speed;		
+	shader_curve_pos[1] = 0;
+}
+else if (id == obj_game.act_line[| 0] || id == obj_game.act_line[| ds_list_size(obj_game.act_line) - 1]) {	
+	shader_curve_pos[0] += obj_game.shader_curve_speed;	
+	if (shader_curve_pos[0] >= 1) {
+		shader_curve_pos[1] += 	obj_game.shader_curve_speed;	
+	}
+}
+else {
+	shader_curve_pos[1] -= obj_game.shader_curve_speed;
+	if (shader_curve_pos[1] <= 0) {
+		shader_curve_pos[0] -= 	obj_game.shader_curve_speed;	
+	}	
+}
+
+
+
 gpu_set_blendmode(bm_add);
 for (var c = 1; c < 2; c+= 0.1) {
-	draw_sprite_ext(sprite_index, image_index,x,y,c*image_xscale,c*image_yscale, image_angle,image_blend,val*0.1);
+	draw_sprite_ext(sprite_index, image_index,x,y,c*image_xscale,c*image_yscale, image_angle,image_blend,(1-shader_curve_pos[0])*val*0.1);
+	draw_sprite_ext(end_sprite, image_index,x,y,c*image_xscale,c*image_yscale, image_angle,image_blend,shader_curve_pos[0]*val*0.1);
 }
 gpu_set_blendmode(bm_normal);
 
-draw_self();
+
+draw_sprite_ext(sprite_index, image_index,x,y,image_xscale,image_yscale, image_angle,image_blend,(1-shader_curve_pos[1]));
+draw_sprite_ext(end_sprite, image_index,x,y,image_xscale,image_yscale, image_angle,image_blend,shader_curve_pos[0]);
+
+
+
+
+
+
 

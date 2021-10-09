@@ -15,8 +15,12 @@ part_type_blend(global.starParticle, false);
 part_type_life(global.starParticle, 360, 2000);
 
 
+
 global.Emitter = part_emitter_create(global.P_System);
+
 
 part_emitter_region(global.P_System, global.Emitter, 0, room_width, 0 , room_height-5, ps_shape_rectangle, ps_distr_linear);
 part_emitter_stream(global.P_System, global.Emitter, global.starParticle, 1);
+
+
 

@@ -25,3 +25,5 @@ var glow_curve_asset = SinCurve; // glow curve
 var glow_curve_struct = animcurve_get(glow_curve_asset);
 glow_curve_channel = animcurve_get_channel(glow_curve_struct, "Sin");		
 glow_curve_speed = 0.005;
+
+shader_curve_speed = 0.05;
