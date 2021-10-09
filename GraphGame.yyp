@@ -14,6 +14,7 @@
     {"id":{"name":"act_graph_check_adjacent","path":"scripts/act_graph_check_adjacent/act_graph_check_adjacent.yy",},"order":4,},
     {"id":{"name":"room_levelselect","path":"rooms/room_levelselect/room_levelselect.yy",},"order":2,},
     {"id":{"name":"menu_selectEflat_","path":"sounds/menu_selectEflat_/menu_selectEflat_.yy",},"order":8,},
+    {"id":{"name":"CreditsFont","path":"fonts/CreditsFont/CreditsFont.yy",},"order":4,},
     {"id":{"name":"create_level2","path":"scripts/create_level2/create_level2.yy",},"order":6,},
     {"id":{"name":"graph_destroy","path":"scripts/graph_destroy/graph_destroy.yy",},"order":4,},
     {"id":{"name":"spr_cursor","path":"sprites/spr_cursor/spr_cursor.yy",},"order":2,},

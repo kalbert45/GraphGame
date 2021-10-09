@@ -10,11 +10,11 @@ num_levels = 25;
 var curveAsset = EaseCurves; // ease curve
 curveStruct = animcurve_get(curveAsset);
 
-camera_curve_pos = 0;
+camera_curve_pos[1] = 0;
 camera_curve_speed = 0.016;
 
 menu_shade_curve_pos[2] = 0;
-submenu_shade_curve_pos[4] = 0;
+submenu_shade_curve_pos[5] = 0;
 level_shade_curve_pos[num_levels-1] = 0;
 back_shade_curve_pos = 0;
 next_shade_curve_pos = 0;
@@ -33,6 +33,7 @@ menu[2] = "Quit";
 menu[1] = "Options";
 menu[0] = "Level select";
 
+submenu[5] = ["Credits"];
 submenu[4] = ["BACK"];
 submenu[3] = ["Reset Progress"];
 submenu[2] = ["Window size:"];
@@ -42,8 +43,8 @@ submenu[0] = ["Music Volume:", 1];
 menu_items = array_length(menu);
 submenu_items = array_length(submenu);
 
-menu_x = room_width / 4;
-submenu_x = 3 * room_width / 4;
+menu_x = room_width / 6;
+submenu_x = 3 * room_width / 6;
 menu_y = 2 * room_height / 3;
 submenu_y = room_height / 3;
 
@@ -62,6 +63,7 @@ button_menu[2] = new button(0,0,0,0);
 button_menu[1] = new button(0,0,0,0);
 button_menu[0] = new button(0,0,0,0);
 
+options_button_menu[5] = new button(0,0,0,0);
 options_button_menu[4] = new button(0,0,0,0);
 options_button_menu[3] = new button(0,0,0,0);
 options_button_menu[2] = new button(0,0,0,0);
