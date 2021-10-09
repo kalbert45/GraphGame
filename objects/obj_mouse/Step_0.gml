@@ -139,7 +139,7 @@ if (inst != noone)
 				// only if its adjacent to selected
 				if (mouse_check_button(mb_left)) {
 					// check if cleared
-					if (obj_game.act_line[| 0] == id) {
+					if (obj_game.act_line[| 0] == id && graph_check_adjacent(obj_game.graph, id)) {
 						if (ds_list_size(obj_game.act_line) == obj_game.win_num) {
 							if (global.selected == obj_game.act_line[| ds_list_size(obj_game.act_line)-1])	{
 								graph_add_act_edge(obj_game.graph, global.selected.label, label);
@@ -149,7 +149,7 @@ if (inst != noone)
 							}
 						}
 					}
-					else if (obj_game.act_line[| ds_list_size(obj_game.act_line)-1] == id) {
+					else if (obj_game.act_line[| ds_list_size(obj_game.act_line)-1] == id && graph_check_adjacent(obj_game.graph, id)) {
 						if (ds_list_size(obj_game.act_line) == obj_game.win_num) {
 							if (global.selected == obj_game.act_line[| 0])	{
 								graph_add_act_edge(obj_game.graph, label, global.selected.label);
