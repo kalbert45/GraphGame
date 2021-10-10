@@ -6,7 +6,7 @@
     "path": "folders/Scripts/Animation scripts.yy",
   },
   "resourceVersion": "1.0",
-  "name": "draw_level_item",
+  "name": "draw_level_item_blue",
   "tags": [],
   "resourceType": "GMScript",
 }

@@ -1,6 +1,6 @@
 // Draws menu item
 // returns animation curve position cuz it has to
-function draw_level_item(xx, yy, txt, button, curveStruct, curve_pos, curve_speed, uni_shade, menu_shade, mouse_hover, min_scale, max_scale, scale_spd){
+function draw_level_item_blue(xx, yy, txt, button, curveStruct, curve_pos, curve_speed, uni_shade, menu_shade, mouse_hover, min_scale, max_scale, scale_spd){
 	var txt_scale = 1;
 	var goal_scale = (min_scale * !mouse_hover) + (max_scale * mouse_hover); // Calculate goal scale
 	
@@ -15,7 +15,7 @@ function draw_level_item(xx, yy, txt, button, curveStruct, curve_pos, curve_spee
 		var curveChannel = animcurve_get_channel(curveStruct, "Line");
 		var val = animcurve_channel_evaluate(curveChannel, curve_pos);
 			
-		draw_set_color(c_white);
+		draw_set_color($FFEEAA);
 			
 		shader_set(FontShader);
 		shader_set_uniform_f(uni_shade, -0.5*menu_shade * val);

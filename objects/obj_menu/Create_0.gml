@@ -8,6 +8,8 @@
 /// @description variables
 num_levels = 25;
 
+global.cleared_levels[num_levels-1] = 0; // need to save this somehow
+
 var curveAsset = EaseCurves; // ease curve
 curveStruct = animcurve_get(curveAsset);
 
@@ -41,6 +43,7 @@ submenu[2] = ["Window size:"];
 submenu[1] = ["SFX Volume:", 1];
 submenu[0] = ["Music Volume:", 1];
 
+reset_counter = 0;
 
 menu_items = array_length(menu);
 submenu_items = array_length(submenu);

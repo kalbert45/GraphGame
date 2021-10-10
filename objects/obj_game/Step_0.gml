@@ -42,5 +42,6 @@ if (global.cleared == true) {
 	if (!clear_audio_played) {
 		clear_audio_played = true;
 		audio_play_sound(clearSFX, 0, false);
+		global.cleared_levels[obj_menu.current_level-1] = 1;
 	}
 }

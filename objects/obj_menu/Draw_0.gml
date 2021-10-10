@@ -209,8 +209,23 @@ if (room == room_start) {
 			if (sub_mouse_hover && menu_control) {
 				if (mouse_check_button_pressed(mb_left)) {
 					play_menu_select_sfx();
-					select = -1;
-					menu_control = false;
+				}
+				if (mouse_check_button(mb_left)) {
+					reset_counter++;
+					draw_set_color(c_red);
+					draw_set_alpha(reset_counter / 360);
+					draw_text_transformed(sub_xx,sub_yy,sub_txt, 1.03, 1.03, 0);
+					draw_set_alpha(1);
+					if (reset_counter == 420) {
+						for (var i = 0; i < num_levels; i++) {
+							global.cleared_levels[i] = false;	
+						}
+						select = -1;
+						menu_control = false;
+					}
+				}
+				else {
+					reset_counter = 0;	
 				}
 			}
 		}
@@ -258,7 +273,6 @@ if (room == room_start) {
 			draw_rectangle(sub_xx + string_width(sub_txt)/2 + 10, sub_yy + string_height(sub_txt)/2 - 5, 
 							sub_xx + string_width(sub_txt)/2 + 210, sub_yy - string_height(sub_txt)/2 + 5,false);
 			draw_set_color(c_white);
-			show_debug_message(j);
 			draw_rectangle(sub_xx + string_width(sub_txt)/2 + 10, sub_yy + string_height(sub_txt)/2 - 5, 
 							sub_xx + string_width(sub_txt)/2 + 10 + (submenu[j][1] * 200), sub_yy - string_height(sub_txt)/2 + 5,false);
 			draw_set_color(c_white);
@@ -319,40 +333,63 @@ else if (room == room_levelselect) {
 	}
 	
 	// make levels buttons
+	var clear_count = 0;
+	draw_set_font(LevelFont);
 	for (var i = 0; i < num_levels; i++) {
 		var j = i div 10;
-		
 		var txt = string(i+1);
 		var xx = menu_x - 450 + (i mod 10)*gap;
 		var yy = menu_y - 360 + j*gap;
-		level_buttons[i].y = yy - 25;
-		level_buttons[i].wl = xx - 25;
-		level_buttons[i].wr = xx + 25;
-		level_buttons[i].h = gap/2;
-	
-		var mouse_hover = mouse_y > level_buttons[i].y && mouse_y < level_buttons[i].y + 
-									level_buttons[i].h && mouse_x < level_buttons[i].wr && mouse_x > level_buttons[i].wl;
-		draw_set_font(LevelFont);
-		level_shade_curve_pos[i] = draw_level_item(xx, yy, txt, level_buttons[i], curveStruct, level_shade_curve_pos[i], menu_shade_curve_speed, uni_shade, menu_shade, mouse_hover, min_scale, max_scale, scale_spd);
-		draw_set_font(MenuFont);
-		if (mouse_hover && menu_control && !global.midTransition && mouse_check_button_pressed(mb_left)) {
-			play_graph_sfx();
-			select = i+1;
+		if (i % 10 == 0) {
+			if (clear_count >= 8*j) {
+				clear_count = 8*j;	
+			}
 		}
-	
-		//temporary code
-		//draw_set_color($FFEEAA);
-		//draw_sprite_ext(spr_vertex_blue, 0, xx, yy, 1.5, 1.5, 0, image_blend, 0.8);
-		//draw_text(xx, yy, txt);
+		if (clear_count < 8*j) { // draw grey level
+			draw_set_color(c_dkgrey);
+			draw_text(xx, yy, txt);
+		}
+		else if (global.cleared_levels[i]) { // draw yellow level
+			clear_count++;	
+			
+			level_buttons[i].y = yy - 25;
+			level_buttons[i].wl = xx - 25;
+			level_buttons[i].wr = xx + 25;
+			level_buttons[i].h = gap/2;
+			
+			var mouse_hover = mouse_y > level_buttons[i].y && mouse_y < level_buttons[i].y + 
+										level_buttons[i].h && mouse_x < level_buttons[i].wr && mouse_x > level_buttons[i].wl;
+			level_shade_curve_pos[i] = draw_level_item_clear(xx, yy, txt, level_buttons[i], curveStruct, level_shade_curve_pos[i], menu_shade_curve_speed, uni_shade, menu_shade, mouse_hover, min_scale, max_scale, scale_spd);
+			if (mouse_hover && menu_control && !global.midTransition && mouse_check_button_pressed(mb_left)) {
+				play_graph_sfx();
+				select = i+1;
+			}
+		}
+		
+		else { // draw available blue level
+			level_buttons[i].y = yy - 25;
+			level_buttons[i].wl = xx - 25;
+			level_buttons[i].wr = xx + 25;
+			level_buttons[i].h = gap/2;
+			
+			var mouse_hover = mouse_y > level_buttons[i].y && mouse_y < level_buttons[i].y + 
+										level_buttons[i].h && mouse_x < level_buttons[i].wr && mouse_x > level_buttons[i].wl;
+			level_shade_curve_pos[i] = draw_level_item_blue(xx, yy, txt, level_buttons[i], curveStruct, level_shade_curve_pos[i], menu_shade_curve_speed, uni_shade, menu_shade, mouse_hover, min_scale, max_scale, scale_spd);
+			if (mouse_hover && menu_control && !global.midTransition && mouse_check_button_pressed(mb_left)) {
+				play_graph_sfx();
+				select = i+1;
+			}
+		}
 
 	}
+	draw_set_font(MenuFont);
 }
 else {
 	var gap = 120;
 	
 	draw_set_font(OptionsFont);
 	draw_set_color(c_white);
-	draw_text(75, 75, string(current_level));
+	draw_text(75, 100, string(current_level));
 	draw_set_font(MenuFont);
 	
 	// make menu button
