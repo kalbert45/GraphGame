@@ -12,9 +12,9 @@ for (var i = 1; i < array_length(window_sizes); i++) {
 max_window = i - 1;
 current_window = max_window;
 
-cameraX = 0;
+
 cameraXTo = 1920;
-cameraY = 0;
+cameraYTo = 1080;
 
 cameraWidth = 1920;
 cameraHeight = 1080;

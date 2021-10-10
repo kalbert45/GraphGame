@@ -31,3 +31,7 @@ function transition_finished() {
 	layer_sequence_destroy(self.elementID);
 	global.midTransition = false;
 }
+
+function transition_gameend() {
+	game_end();
+}

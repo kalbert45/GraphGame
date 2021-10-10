@@ -21,6 +21,7 @@ function draw_level_item(xx, yy, txt, button, curveStruct, curve_pos, curve_spee
 		shader_set_uniform_f(uni_shade, -0.5*menu_shade * val);
 			
 		var txt_scale = lerp(1, goal_scale, scale_spd);
+		//draw_text(xx, yy, txt);
 		draw_text_transformed(xx,yy,txt, txt_scale, txt_scale, 0);
 			
 		shader_reset();
@@ -40,7 +41,7 @@ function draw_level_item(xx, yy, txt, button, curveStruct, curve_pos, curve_spee
 			
 		txt_scale = lerp(txt_scale, goal_scale, scale_spd);
 		draw_text_transformed(xx,yy,txt, txt_scale, txt_scale, 0);
-			
+		//draw_text(xx, yy, txt);
 		shader_reset();
 	}
 	return curve_pos;

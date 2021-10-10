@@ -4,13 +4,14 @@
 //ds_map_add(set, "SFX Volume", [1, [0,1]]);
 //ds_map_add(set, "Music Volume", [1, [0,1]]);
 
+
 /// @description variables
 num_levels = 25;
 
 var curveAsset = EaseCurves; // ease curve
 curveStruct = animcurve_get(curveAsset);
 
-camera_curve_pos[1] = 0;
+
 camera_curve_speed = 0.016;
 
 menu_shade_curve_pos[2] = 0;
@@ -39,6 +40,7 @@ submenu[3] = ["Reset Progress"];
 submenu[2] = ["Window size:"];
 submenu[1] = ["SFX Volume:", 1];
 submenu[0] = ["Music Volume:", 1];
+
 
 menu_items = array_length(menu);
 submenu_items = array_length(submenu);
