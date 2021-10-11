@@ -7,3 +7,7 @@ current_level = global.level;
 
 camera_curve_pos[1] = 0;
 camera_curve_pos[0] = 0;
+next_alpha_curve_pos = 0;
+clear_timer_curve_pos = 0;
+
+pause_time = false;

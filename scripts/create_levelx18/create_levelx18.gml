@@ -1,28 +1,48 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function create_level18(){
-	obj_game.win_num = 8;
-	obj_game.win_con = "hamiltonian";
+	obj_game.win_num = 24;
+	obj_game.win_con = "euler";
+	obj_game.max_degree = 6;
 	
 	var graph = graph_create();
 
-	for (var i = 0; i < 4; i++) {
-		graph_add_node(graph, 960 + lengthdir_x(150, 45 +i*90), 490 + lengthdir_y(150, 45+i*90), i);
-	}
-	for (var i = 4; i < 8; i++) {
-		graph_add_node(graph, 960 + lengthdir_x(300, 45 +i*90), 490 + lengthdir_y(300, 45+i*90), i);
-	}
+	graph_add_node(graph, 1260, 366, 0);
+	graph_add_node(graph, 1260, 614, 1);
+	graph_add_node(graph, 660, 366, 2);
+	graph_add_node(graph, 660, 614, 3);
+	graph_add_node(graph, 1084, 190, 4);
+	graph_add_node(graph, 1084, 790, 5);
+	graph_add_node(graph, 836, 190, 6);
+	graph_add_node(graph, 836, 790, 7);
 
-	for (var i = 0; i < 4; i++) {
-		graph_add_edge(graph, i, (i+1) mod 4);	
-	}
-	for (var i = 4; i < 8; i++) {
-		graph_add_edge(graph, i, ((i+1) mod 4)+4);	
-	}
-	graph_add_edge(graph, 0, 4);
-	graph_add_edge(graph, 1, 5);
 	graph_add_edge(graph, 2, 6);
-	graph_add_edge(graph, 3, 7);
+	graph_add_edge(graph, 3, 6);
+	graph_add_edge(graph, 4, 6);
+	graph_add_edge(graph, 0, 6);
+	graph_add_edge(graph, 1, 6);
+	graph_add_edge(graph, 5, 6);
 
+	graph_add_edge(graph, 3, 7);
+	graph_add_edge(graph, 2, 7);
+	graph_add_edge(graph, 4, 7);
+	graph_add_edge(graph, 0, 7);
+	graph_add_edge(graph, 1, 7);
+	graph_add_edge(graph, 5, 7);
+	
+	graph_add_edge(graph, 1, 5);
+	graph_add_edge(graph, 0, 5);
+	graph_add_edge(graph, 2, 5);
+	graph_add_edge(graph, 3, 5);
+	graph_add_edge(graph, 0, 4);
+	graph_add_edge(graph, 1, 4);
+	
+	graph_add_edge(graph, 2, 4);
+	graph_add_edge(graph, 3, 4);
+	graph_add_edge(graph, 1, 3);
+	graph_add_edge(graph, 0, 3);
+	graph_add_edge(graph, 1, 2);
+	graph_add_edge(graph, 0, 2);
+	
 	return graph;
 }

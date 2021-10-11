@@ -8,7 +8,12 @@
 /// @description variables
 num_levels = 25;
 
-global.cleared_levels[num_levels-1] = 0; // need to save this somehow
+for (var i = 0; i < num_levels; i++) {
+	global.cleared_levels[num_levels-1-i] = [0, [0,0,0], [0,0,0]]; // need to save this somehow
+}
+show_debug_message(global.cleared_levels);
+
+
 
 var curveAsset = EaseCurves; // ease curve
 curveStruct = animcurve_get(curveAsset);
@@ -18,6 +23,7 @@ camera_curve_speed = 0.016;
 
 menu_shade_curve_pos[2] = 0;
 submenu_shade_curve_pos[5] = 0;
+resolution_shade_curve_pos[1] = 0;
 level_shade_curve_pos[num_levels-1] = 0;
 back_shade_curve_pos = 0;
 next_shade_curve_pos = 0;
@@ -74,6 +80,9 @@ options_button_menu[3] = new button(0,0,0,0);
 options_button_menu[2] = new button(0,0,0,0);
 options_button_menu[1] = new button(0,0,0,0);
 options_button_menu[0] = new button(0,0,0,0);
+
+resolution_buttons[1] = new button(0,0,0,0);
+resolution_buttons[0] = new button(0,0,0,0);
 
 for (var i = num_levels - 1; i > -1; i--) {
 	level_buttons[num_levels] = new button(0,0,0,0);

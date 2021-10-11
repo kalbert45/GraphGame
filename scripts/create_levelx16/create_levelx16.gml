@@ -11,6 +11,9 @@ function create_level16(){
 	}
 
 	for (var i = 0; i < 12; i++) {
+		if (i==2) {
+			continue;	
+		}
 		graph_add_edge(graph, i, (i+1) mod 12);	
 	}
 	graph_add_edge(graph, 0, 5);

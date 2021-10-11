@@ -8,6 +8,7 @@ function graph_check_adjacent(graph, v){
 		return -1;
 	}
 	else {
-		return ds_list_find_index(adj_list, global.selected.label) >= 0;
+		var adj_list_other = adj_map[? global.selected.label];
+		return ((!is_undefined(adj_list) && ds_list_find_index(adj_list, global.selected.label) >= 0) || (!is_undefined(adj_list_other) && ds_list_find_index(adj_list_other, label) >= 0));
 	}
 }

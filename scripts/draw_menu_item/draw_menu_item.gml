@@ -8,7 +8,7 @@ function draw_menu_item(xx, yy, txt, button, curveStruct, curve_pos, curve_speed
 		//if (curve_pos == curve_speed) { // hacky way to play sound once
 		//	audio_play_sound(menu_hover, 0, false);
 		//}
-		
+	
 		if (curve_pos < 1) {
 			curve_pos += curve_speed;
 		}
