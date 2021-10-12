@@ -268,7 +268,9 @@ if (inst != noone)
 							ds_list_add(obj_game.act_line, id);
 							ds_list_add(id.inbound_v, global.selected.label);
 						}				
-						play_graph_sfx();
+						if (!(obj_game.act_edge_count == obj_game.win_num)) {
+							play_graph_sfx();
+						}
 						global.v_prev_select = global.selected;
 						global.selected = id;
 						global.mouse_activated = true;
@@ -296,7 +298,9 @@ if (inst != noone)
 							ds_list_add(id.inbound_v, global.selected.label);
 						}	
 				
-						play_graph_sfx();
+						if (!(obj_game.act_edge_count == obj_game.win_num)) {
+							play_graph_sfx();
+						}
 						global.v_prev_select = global.selected;
 						global.selected = id;
 					}

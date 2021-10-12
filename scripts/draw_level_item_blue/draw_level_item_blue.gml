@@ -1,6 +1,6 @@
 // Draws menu item
 // returns animation curve position cuz it has to
-function draw_level_item_blue(xx, yy, txt, button, curveStruct, curve_pos, curve_speed, uni_shade, menu_shade, mouse_hover, min_scale, max_scale, scale_spd){
+function draw_level_item_blue(xx, yy, txt,time, button, curveStruct, curve_pos, curve_speed, uni_shade, menu_shade, mouse_hover, min_scale, max_scale, scale_spd){
 	var txt_scale = 1;
 	var goal_scale = (min_scale * !mouse_hover) + (max_scale * mouse_hover); // Calculate goal scale
 	
@@ -12,7 +12,7 @@ function draw_level_item_blue(xx, yy, txt, button, curveStruct, curve_pos, curve
 		if (curve_pos < 1) {
 			curve_pos += curve_speed;
 		}
-		var curveChannel = animcurve_get_channel(curveStruct, "Line");
+		var curveChannel = animcurve_get_channel(curveStruct, "EaseIn");
 		var val = animcurve_channel_evaluate(curveChannel, curve_pos);
 			
 		draw_set_color($FFEEAA);
@@ -29,9 +29,9 @@ function draw_level_item_blue(xx, yy, txt, button, curveStruct, curve_pos, curve
 	else {
 		
 		if (curve_pos > 0) {
-			curve_pos -= curve_speed;
+			curve_pos -= 2*curve_speed;
 		}
-		var curveChannel = animcurve_get_channel(curveStruct, "Line");
+		var curveChannel = animcurve_get_channel(curveStruct, "EaseIn");
 		var val = animcurve_channel_evaluate(curveChannel, curve_pos);
 			
 		draw_set_color($FFEEAA);
@@ -44,5 +44,8 @@ function draw_level_item_blue(xx, yy, txt, button, curveStruct, curve_pos, curve
 		//draw_text(xx, yy, txt);
 		shader_reset();
 	}
+	
+	draw_text_transformed_color(xx, yy-25-(val*25),time,0.5+(0.5*val), 1, 0,$FFEEAA,$FFEEAA,$FFEEAA,$FFEEAA,val);
+	
 	return curve_pos;
 }

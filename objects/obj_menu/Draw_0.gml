@@ -372,7 +372,7 @@ else if (room == room_levelselect) {
 		var j = i div 10;
 		var txt = string(i+1);
 		var xx = menu_x - 450 + (i mod 10)*gap;
-		var yy = menu_y - 360 + j*gap;
+		var yy = menu_y - 360 + 1.5*j*gap;
 		if (i % 10 == 0) {
 			if (clear_count >= 8*j) {
 				clear_count = 8*j;	
@@ -392,7 +392,10 @@ else if (room == room_levelselect) {
 			
 			var mouse_hover = mouse_y > level_buttons[i].y && mouse_y < level_buttons[i].y + 
 										level_buttons[i].h && mouse_x < level_buttons[i].wr && mouse_x > level_buttons[i].wl;
-			level_shade_curve_pos[i] = draw_level_item_clear(xx, yy, txt, level_buttons[i], curveStruct, level_shade_curve_pos[i], menu_shade_curve_speed, uni_shade, menu_shade, mouse_hover, min_scale, max_scale, scale_spd);
+										
+			var time = string_replace_all(string(global.cleared_levels[i][1][0]) + ":" + string_format(global.cleared_levels[i][1][1], 2, 0) + ":" + string_format(global.cleared_levels[i][1][2], 2, 0), " ", "0");
+			
+			level_shade_curve_pos[i] = draw_level_item_clear(xx, yy, txt,time, level_buttons[i], curveStruct, level_shade_curve_pos[i], menu_shade_curve_speed, uni_shade, menu_shade, mouse_hover, min_scale, max_scale, scale_spd);
 			if (mouse_hover && menu_control && !global.midTransition && mouse_check_button_pressed(mb_left)) {
 				play_graph_sfx();
 				select = i+1;
@@ -407,7 +410,9 @@ else if (room == room_levelselect) {
 			
 			var mouse_hover = mouse_y > level_buttons[i].y && mouse_y < level_buttons[i].y + 
 										level_buttons[i].h && mouse_x < level_buttons[i].wr && mouse_x > level_buttons[i].wl;
-			level_shade_curve_pos[i] = draw_level_item_blue(xx, yy, txt, level_buttons[i], curveStruct, level_shade_curve_pos[i], menu_shade_curve_speed, uni_shade, menu_shade, mouse_hover, min_scale, max_scale, scale_spd);
+										
+			var time = string_replace_all(string(global.cleared_levels[i][2][0]) + ":" + string_format(global.cleared_levels[i][2][1], 2, 0) + ":" + string_format(global.cleared_levels[i][2][2], 2, 0), " ", "0");							
+			level_shade_curve_pos[i] = draw_level_item_blue(xx, yy, txt,time, level_buttons[i], curveStruct, level_shade_curve_pos[i], menu_shade_curve_speed, uni_shade, menu_shade, mouse_hover, min_scale, max_scale, scale_spd);
 			if (mouse_hover && menu_control && !global.midTransition && mouse_check_button_pressed(mb_left)) {
 				play_graph_sfx();
 				select = i+1;
@@ -485,27 +490,48 @@ else {
 			menu_control = false;
 		}
 	}
-	var sub_txt = "Skip Level";	
-	var sub_xx = menu_x;
-	var sub_yy = 1080 + menu_y - gap;
-			
-	options_button_menu[1].y = sub_yy - string_height(sub_txt)/2;
-	options_button_menu[1].wl = sub_xx - string_width(sub_txt)/2;
-	options_button_menu[1].wr = sub_xx + string_width(sub_txt)/2;
-	options_button_menu[1].h = string_height(sub_txt);
-	
-	var sub_mouse_hover = mouse_y > options_button_menu[1].y && mouse_y < options_button_menu[1].y + 
-								options_button_menu[1].h && mouse_x < options_button_menu[1].wr && mouse_x > options_button_menu[1].wl;
-	
-	// draw submenu item
-	submenu_shade_curve_pos[1] = draw_menu_item(sub_xx, sub_yy, sub_txt, options_button_menu[1], curveStruct, submenu_shade_curve_pos[1], menu_shade_curve_speed, uni_shade, menu_shade, sub_mouse_hover, min_scale, max_scale, scale_spd);
-	if (sub_mouse_hover && menu_control) {
-		if (mouse_check_button_pressed(mb_left)) {
-			play_menu_select_sfx();
-			select = 3;
-			menu_control = false;
+	var clear_count = 10;
+	if (current_level % 10 == 0) {
+		clear_count = 0;
+		for (var i = current_level - 10; i < current_level; i++) {
+			if (global.cleared_levels[i][0]) {
+				clear_count++;	
+			}
 		}
 	}
+	if (clear_count < 8) {
+		
+		var sub_txt = "Skip Level";	
+		var sub_xx = menu_x;
+		var sub_yy = 1080 + menu_y - gap;
+			
+		draw_set_color(c_dkgrey);
+		draw_text(sub_xx, sub_yy, sub_txt);
+	}
+	else {
+		var sub_txt = "Skip Level";	
+		var sub_xx = menu_x;
+		var sub_yy = 1080 + menu_y - gap;
+			
+		options_button_menu[1].y = sub_yy - string_height(sub_txt)/2;
+		options_button_menu[1].wl = sub_xx - string_width(sub_txt)/2;
+		options_button_menu[1].wr = sub_xx + string_width(sub_txt)/2;
+		options_button_menu[1].h = string_height(sub_txt);
+	
+		var sub_mouse_hover = mouse_y > options_button_menu[1].y && mouse_y < options_button_menu[1].y + 
+									options_button_menu[1].h && mouse_x < options_button_menu[1].wr && mouse_x > options_button_menu[1].wl;
+	
+		// draw submenu item
+		submenu_shade_curve_pos[1] = draw_menu_item(sub_xx, sub_yy, sub_txt, options_button_menu[1], curveStruct, submenu_shade_curve_pos[1], menu_shade_curve_speed, uni_shade, menu_shade, sub_mouse_hover, min_scale, max_scale, scale_spd);
+		if (sub_mouse_hover && menu_control) {
+			if (mouse_check_button_pressed(mb_left)) {
+				play_menu_select_sfx();
+				select = 3;
+				menu_control = false;
+			}
+		}	
+	}
+	
 	var sub_txt = "Restart Level (R)";	
 	var sub_xx = menu_x;
 	var sub_yy = 1080 + menu_y;
@@ -568,27 +594,54 @@ else {
 		draw_text(xx, yy, txt);	
 		draw_set_font(MenuFont);
 		
-		// make next level button
-		draw_set_font(MenuFont);
-		var txt = "NEXT";
-		var xx = room_width - 150;
-		var yy = room_height/2 - 100;
-		next_button.y = yy - sprite_get_height(spr_arrowbig)/2;
-		next_button.wl = xx - string_width(txt)/2;
-		next_button.wr = xx + string_width(txt)/2 + sprite_get_width(spr_arrowbig) + 40;
-		next_button.h = sprite_get_height(spr_arrowbig);
+		
+		if (clear_count < 8) {
+			// make next level button
+			draw_set_font(MenuFont);
+			var txt = "EXIT";
+			var xx = room_width - 150;
+			var yy = room_height/2 - 100;
+			next_button.y = yy - string_height(txt)/2;
+			next_button.wl = xx - string_width(txt)/2;
+			next_button.wr = xx + string_width(txt)/2;
+			next_button.h = string_height(txt);
 
-		var mouse_hover = mouse_y > next_button.y && mouse_y < next_button.y + 
-									next_button.h && mouse_x < next_button.wr && mouse_x > next_button.wl;
+			var mouse_hover = mouse_y > next_button.y && mouse_y < next_button.y + 
+										next_button.h && mouse_x < next_button.wr && mouse_x > next_button.wl;
 		
-		next_shade_curve_pos = draw_next_item(xx, yy, txt, spr_arrowbig, next_button, curveStruct, next_shade_curve_pos, menu_shade_curve_speed, uni_shade, menu_shade, mouse_hover, min_scale, max_scale, scale_spd, next_alpha_curve_pos);
+			next_shade_curve_pos = draw_exit_item(xx, yy, txt, next_button, curveStruct, next_shade_curve_pos, menu_shade_curve_speed, uni_shade, menu_shade, mouse_hover, min_scale, max_scale, scale_spd, next_alpha_curve_pos);
 		
-		if (mouse_hover && menu_control && !global.midTransition) {
-			if (mouse_check_button_pressed(mb_left)) { // click to select
-					play_menu_select_sfx();
-					menu_control = false;
-					global.level++;
-					transition_start(room_level, sq_fadeout, sq_fadein);
+			if (mouse_hover && menu_control && !global.midTransition) {
+				if (mouse_check_button_pressed(mb_left)) { // click to select
+						play_menu_select_sfx();
+						menu_control = false;
+						transition_start(room_levelselect, sq_fadeout, sq_fadein);
+				}
+			}
+		}
+		else {
+			// make next level button
+			draw_set_font(MenuFont);
+			var txt = "NEXT";
+			var xx = room_width - 150;
+			var yy = room_height/2 - 100;
+			next_button.y = yy - sprite_get_height(spr_arrowbig)/2;
+			next_button.wl = xx - string_width(txt)/2;
+			next_button.wr = xx + string_width(txt)/2 + sprite_get_width(spr_arrowbig) + 40;
+			next_button.h = sprite_get_height(spr_arrowbig);
+
+			var mouse_hover = mouse_y > next_button.y && mouse_y < next_button.y + 
+										next_button.h && mouse_x < next_button.wr && mouse_x > next_button.wl;
+		
+			next_shade_curve_pos = draw_next_item(xx, yy, txt, spr_arrowbig, next_button, curveStruct, next_shade_curve_pos, menu_shade_curve_speed, uni_shade, menu_shade, mouse_hover, min_scale, max_scale, scale_spd, next_alpha_curve_pos);
+		
+			if (mouse_hover && menu_control && !global.midTransition) {
+				if (mouse_check_button_pressed(mb_left)) { // click to select
+						play_menu_select_sfx();
+						menu_control = false;
+						global.level++;
+						transition_start(room_level, sq_fadeout, sq_fadein);
+				}
 			}
 		}
 	}

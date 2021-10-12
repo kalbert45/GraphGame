@@ -6,10 +6,10 @@ function create_level5(){
 	
 	var graph = graph_create();
 
-	graph_add_node(graph, 960, 170, 0);
+	graph_add_node(graph, 960, 250, 0);
 	graph_add_node(graph, 960, 490, 1);
-	graph_add_node(graph, 1237, 650, 2);
-	graph_add_node(graph, 683, 650, 3);
+	graph_add_node(graph, 1168, 610, 2);
+	graph_add_node(graph, 752, 610, 3);
 
 
 	graph_add_edge(graph, 0, 1);
