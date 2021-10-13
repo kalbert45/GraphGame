@@ -460,8 +460,9 @@ else {
 	if (!global.cleared) {
 		draw_set_font(TimerFont);
 		draw_set_halign(fa_left);
+		draw_set_color($FFEEAA);
 		var sub_txt = string_replace_all(string(global.cleared_levels[current_level-1][2][0]) + ":" + string_format(global.cleared_levels[current_level-1][2][1], 2, 0) + ":" + string_format(global.cleared_levels[current_level-1][2][2], 2, 0), " ", "0");
-		var sub_xx = menu_x - 85;
+		var sub_xx = menu_x - 80;
 		var sub_yy = 1080 + menu_y - 4*gap + 50;
 		draw_text(sub_xx, sub_yy, sub_txt);
 		draw_set_halign(fa_center);
