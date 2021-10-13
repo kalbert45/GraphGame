@@ -9,7 +9,7 @@ part_type_shape(global.starParticle, pt_shape_flare);
 part_type_size(global.starParticle, 0.02, 0.1, 0, 0);
 part_type_color3(global.starParticle, $D5F6FF, $FFAAAA, $FFEEAA);
 //part_type_alpha3(global.starParticle, 1, 0.5, 0);
-part_type_speed(global.starParticle, 0.03,0.04,0,0);
+part_type_speed(global.starParticle, 0,0.04,0,0);
 part_type_direction(global.starParticle, 20,20,0,0);
 part_type_blend(global.starParticle, false);
 part_type_life(global.starParticle, 1000, 2000);

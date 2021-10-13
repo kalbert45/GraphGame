@@ -114,7 +114,7 @@ if (room == room_start) {
 	draw_set_color(c_white);
 	draw_text(xx, yy, txt);
 	
-	var txt = "Graphic Pear - Virtuous Slab font";
+	var txt = "Juan Pablo del Peral - Alegreya font";
 	var xx = submenu_x + 1920;
 	var yy = submenu_y +390;
 	draw_set_color(c_white);
@@ -461,13 +461,12 @@ else {
 		draw_set_font(TimerFont);
 		draw_set_halign(fa_left);
 		var sub_txt = string_replace_all(string(global.cleared_levels[current_level-1][2][0]) + ":" + string_format(global.cleared_levels[current_level-1][2][1], 2, 0) + ":" + string_format(global.cleared_levels[current_level-1][2][2], 2, 0), " ", "0");
-		var sub_xx = menu_x - 100;
+		var sub_xx = menu_x - 85;
 		var sub_yy = 1080 + menu_y - 4*gap + 50;
 		draw_text(sub_xx, sub_yy, sub_txt);
 		draw_set_halign(fa_center);
-		draw_set_font(MenuFont);
 	}
-	
+	draw_set_font(MenuFont);
 	var sub_txt = "Continue";	
 	var sub_xx = menu_x;
 	var sub_yy = 1080 + menu_y - 2*gap;
@@ -587,7 +586,7 @@ else {
 		
 		var txt = string_replace_all(string(global.cleared_levels[current_level-1][1][0]) + ":" + string_format(global.cleared_levels[current_level-1][1][1], 2, 0) + ":" + string_format(global.cleared_levels[current_level-1][1][2], 2, 0), " ", "0");
 		var xx = room_width/2;
-		var yy = room_height/2 - (100 * val);
+		var yy = room_height/2 - (120 * val);
 		draw_set_color($D5F6FF);
 		draw_set_alpha(next_alpha_curve_pos);
 		draw_set_font(TimerFont);
