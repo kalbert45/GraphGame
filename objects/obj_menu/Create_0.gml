@@ -6,7 +6,7 @@
 
 
 /// @description variables
-num_levels = 25;
+num_levels = 60;
 
 for (var i = 0; i < num_levels; i++) {
 	global.cleared_levels[num_levels-1-i] = [0, [0,0,0], [0,0,0]]; // need to save this somehow

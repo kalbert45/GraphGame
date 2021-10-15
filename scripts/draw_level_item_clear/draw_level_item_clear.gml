@@ -33,9 +33,9 @@ function draw_level_item_clear(xx, yy, txt,time, button, curveStruct, curve_pos,
 	//draw_text(xx, yy, txt);
 	draw_text_transformed(xx,yy,txt, txt_scale, txt_scale, 0);
 	shader_reset();
-	
+	draw_set_font(TimerFont2);
 	draw_text_transformed_color(xx, yy-25-(val*25),time,0.5+(0.5*val), 1, 0,$D5F6FF,$D5F6FF,$D5F6FF,$D5F6FF,val);
-	
+	draw_set_font(LevelFont);
 	
 	return curve_pos;
 }

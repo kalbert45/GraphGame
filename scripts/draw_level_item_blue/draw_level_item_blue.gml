@@ -45,7 +45,9 @@ function draw_level_item_blue(xx, yy, txt,time, button, curveStruct, curve_pos, 
 		shader_reset();
 	}
 	
+	draw_set_font(TimerFont2);
 	draw_text_transformed_color(xx, yy-25-(val*25),time,0.5+(0.5*val), 1, 0,$FFEEAA,$FFEEAA,$FFEEAA,$FFEEAA,val);
+	draw_set_font(LevelFont);
 	
 	return curve_pos;
 }

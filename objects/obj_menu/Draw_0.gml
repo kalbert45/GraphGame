@@ -5,6 +5,8 @@ var min_scale = 1; // Minimum scale
 var max_scale = 1.3; // Maximum scale
 var scale_spd = 0.1; // Speed of scaling
 
+draw_sprite(spr_moon, 0, 1650+(0.9*obj_camera.cameraX), 200+(0.9*obj_camera.cameraY));
+
 if (room == room_start) {
 	draw_set_halign(fa_center);
 	draw_set_valign(fa_center);
@@ -60,7 +62,7 @@ if (room == room_start) {
 
 	// make back button
 	var txt = "BACK";
-	var xx = room_width - 100;
+	var xx = 2*room_width/3 + 100;
 	var yy = 100;
 	back_button.y = yy - string_height(txt)/2;
 	back_button.wl = xx - string_width(txt)/2;
@@ -108,33 +110,27 @@ if (room == room_start) {
 	draw_set_color(c_white);
 	draw_text(xx, yy, txt);
 	
-	var txt = "Philatype - Merge font";
+	var txt = "Juan Pablo del Peral - Alegreya font";
 	var xx = submenu_x + 1920;
 	var yy = submenu_y +340;
 	draw_set_color(c_white);
 	draw_text(xx, yy, txt);
 	
-	var txt = "Juan Pablo del Peral - Alegreya font";
+	var txt = "99Sounds & Rudi Fiasco - Upright Piano plugin";
 	var xx = submenu_x + 1920;
 	var yy = submenu_y +390;
 	draw_set_color(c_white);
 	draw_text(xx, yy, txt);
 	
-	var txt = "99Sounds & Rudi Fiasco - Upright Piano plugin";
+	var txt = "Alan ViSTa - BellsEbuth plugin";
 	var xx = submenu_x + 1920;
 	var yy = submenu_y +440;
 	draw_set_color(c_white);
 	draw_text(xx, yy, txt);
 	
-	var txt = "Alan ViSTa - BellsEbuth plugin";
-	var xx = submenu_x + 1920;
-	var yy = submenu_y +490;
-	draw_set_color(c_white);
-	draw_text(xx, yy, txt);
-	
 	var txt = "Johan Aakerlund - Comfortaa font";
 	var xx = submenu_x + 1920;
-	var yy = submenu_y +540;
+	var yy = submenu_y +490;
 	draw_set_color(c_white);
 	draw_text(xx, yy, txt);
 	
@@ -171,7 +167,7 @@ if (room == room_start) {
 			}
 		}		
 		else if (j == 4) { // back button on top right
-			var sub_xx = (2*room_width / 3) - 100;
+			var sub_xx = (room_width / 3) + 100;
 			var sub_yy = 100;
 			
 			options_button_menu[j].y = sub_yy - string_height(sub_txt)/2;
@@ -340,11 +336,12 @@ if (room == room_start) {
 
 // draw level select menu
 else if (room == room_levelselect) { 
+
 	var gap = 100;
 	
 	// make back button
 	var txt = "BACK";
-	var xx = room_width - 100;
+	var xx = 100;
 	var yy = 100;
 	back_button.y = yy - string_height(txt)/2;
 	back_button.wl = xx - string_width(txt)/2;
@@ -378,11 +375,11 @@ else if (room == room_levelselect) {
 				clear_count = 8*j;	
 			}
 		}
-		if (clear_count < 8*j) { // draw grey level
-			draw_set_color(c_dkgrey);
-			draw_text(xx, yy, txt);
-		}
-		else if (global.cleared_levels[i][0]) { // draw yellow level
+		//if (clear_count < 8*j) { // draw grey level
+		//	draw_set_color(c_dkgrey);
+		//	draw_text(xx, yy, txt);
+		//}
+		if (global.cleared_levels[i][0]) { // draw yellow level
 			clear_count++;	
 			
 			level_buttons[i].y = yy - 25;
@@ -427,7 +424,7 @@ else {
 	
 	draw_set_font(OptionsFont);
 	draw_set_color(c_white);
-	draw_text(75, 100, string(current_level))
+	draw_text(95, 90, string(current_level));
 	
 	draw_set_font(MenuFont);
 	// make menu button
@@ -462,7 +459,7 @@ else {
 		draw_set_halign(fa_left);
 		draw_set_color($FFEEAA);
 		var sub_txt = string_replace_all(string(global.cleared_levels[current_level-1][2][0]) + ":" + string_format(global.cleared_levels[current_level-1][2][1], 2, 0) + ":" + string_format(global.cleared_levels[current_level-1][2][2], 2, 0), " ", "0");
-		var sub_xx = menu_x - 80;
+		var sub_xx = menu_x - string_width(sub_txt)/2;
 		var sub_yy = 1080 + menu_y - 4*gap + 50;
 		draw_text(sub_xx, sub_yy, sub_txt);
 		draw_set_halign(fa_center);
