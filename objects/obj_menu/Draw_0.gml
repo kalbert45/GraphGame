@@ -368,8 +368,8 @@ else if (room == room_levelselect) {
 	for (var i = 0; i < num_levels; i++) {
 		var j = i div 10;
 		var txt = string(i+1);
-		var xx = menu_x - 450 + (i mod 10)*gap;
-		var yy = menu_y - 360 + 1.5*j*gap;
+		var xx = menu_x - 450 + ((j div 3) * 1920) + (i mod 10)*gap;
+		var yy = menu_y - 360 + 1.5*(j mod 3)*gap;
 		if (i % 10 == 0) {
 			if (clear_count >= 8*j) {
 				clear_count = 8*j;	
@@ -377,48 +377,142 @@ else if (room == room_levelselect) {
 		}
 		//if (clear_count < 8*j) { // draw grey level
 		//	draw_set_color(c_dkgrey);
-		//	draw_text(xx, yy, txt);
-		//}
+	//		draw_text(xx, yy, txt);
+	//	}
 		if (global.cleared_levels[i][0]) { // draw yellow level
 			clear_count++;	
 			
-			level_buttons[i].y = yy - 25;
-			level_buttons[i].wl = xx - 25;
-			level_buttons[i].wr = xx + 25;
-			level_buttons[i].h = gap/2;
+			if (i < num_levels/2 && obj_camera.cameraX == 0 && menu_control) {
 			
-			var mouse_hover = mouse_y > level_buttons[i].y && mouse_y < level_buttons[i].y + 
-										level_buttons[i].h && mouse_x < level_buttons[i].wr && mouse_x > level_buttons[i].wl;
+				level_buttons[i].y = yy - 25;
+				level_buttons[i].wl = xx - 25;
+				level_buttons[i].wr = xx + 25;
+				level_buttons[i].h = gap/2;
+			
+				var mouse_hover = mouse_y > level_buttons[i].y && mouse_y < level_buttons[i].y + 
+											level_buttons[i].h && mouse_x < level_buttons[i].wr && mouse_x > level_buttons[i].wl;
 										
-			var time = string_replace_all(string(global.cleared_levels[i][1][0]) + ":" + string_format(global.cleared_levels[i][1][1], 2, 0) + ":" + string_format(global.cleared_levels[i][1][2], 2, 0), " ", "0");
+				var time = string_replace_all(string(global.cleared_levels[i][1][0]) + ":" + string_format(global.cleared_levels[i][1][1], 2, 0) + ":" + string_format(global.cleared_levels[i][1][2], 2, 0), " ", "0");
 			
-			level_shade_curve_pos[i] = draw_level_item_clear(xx, yy, txt,time, level_buttons[i], curveStruct, level_shade_curve_pos[i], menu_shade_curve_speed, uni_shade, menu_shade, mouse_hover, min_scale, max_scale, scale_spd);
-			if (mouse_hover && menu_control && !global.midTransition && mouse_check_button_pressed(mb_left)) {
-				play_graph_sfx();
-				select = i+1;
+				level_shade_curve_pos[i] = draw_level_item_clear(xx, yy, txt,time, level_buttons[i], curveStruct, level_shade_curve_pos[i], menu_shade_curve_speed, uni_shade, menu_shade, mouse_hover, min_scale, max_scale, scale_spd);
+				if (mouse_hover && menu_control && !global.midTransition && mouse_check_button_pressed(mb_left)) {
+					play_graph_sfx();
+					select = i+1;
+				}
+			}
+			else if (i >= num_levels/2 && obj_camera.cameraX == 1920 && menu_control) {
+				level_buttons[i].y = yy - 25;
+				level_buttons[i].wl = xx - 25;
+				level_buttons[i].wr = xx + 25;
+				level_buttons[i].h = gap/2;
+			
+				var mouse_hover = mouse_y > level_buttons[i].y && mouse_y < level_buttons[i].y + 
+											level_buttons[i].h && mouse_x < level_buttons[i].wr && mouse_x > level_buttons[i].wl;
+										
+				var time = string_replace_all(string(global.cleared_levels[i][1][0]) + ":" + string_format(global.cleared_levels[i][1][1], 2, 0) + ":" + string_format(global.cleared_levels[i][1][2], 2, 0), " ", "0");
+			
+				level_shade_curve_pos[i] = draw_level_item_clear(xx, yy, txt,time, level_buttons[i], curveStruct, level_shade_curve_pos[i], menu_shade_curve_speed, uni_shade, menu_shade, mouse_hover, min_scale, max_scale, scale_spd);
+				if (mouse_hover && menu_control && !global.midTransition && mouse_check_button_pressed(mb_left)) {
+					play_graph_sfx();
+					select = i+1;
+				}	
+			}
+			else {
+				draw_set_color($D5F6FF);
+				draw_text(xx, yy, txt);
 			}
 		}
 		
 		else { // draw available blue level
-			level_buttons[i].y = yy - 25;
-			level_buttons[i].wl = xx - 25;
-			level_buttons[i].wr = xx + 25;
-			level_buttons[i].h = gap/2;
+			if (i < num_levels/2 && obj_camera.cameraX == 0 && menu_control) {
 			
-			var mouse_hover = mouse_y > level_buttons[i].y && mouse_y < level_buttons[i].y + 
-										level_buttons[i].h && mouse_x < level_buttons[i].wr && mouse_x > level_buttons[i].wl;
+				level_buttons[i].y = yy - 25;
+				level_buttons[i].wl = xx - 25;
+				level_buttons[i].wr = xx + 25;
+				level_buttons[i].h = gap/2;
+			
+				var mouse_hover = mouse_y > level_buttons[i].y && mouse_y < level_buttons[i].y + 
+											level_buttons[i].h && mouse_x < level_buttons[i].wr && mouse_x > level_buttons[i].wl;
 										
-			var time = string_replace_all(string(global.cleared_levels[i][2][0]) + ":" + string_format(global.cleared_levels[i][2][1], 2, 0) + ":" + string_format(global.cleared_levels[i][2][2], 2, 0), " ", "0");							
-			level_shade_curve_pos[i] = draw_level_item_blue(xx, yy, txt,time, level_buttons[i], curveStruct, level_shade_curve_pos[i], menu_shade_curve_speed, uni_shade, menu_shade, mouse_hover, min_scale, max_scale, scale_spd);
-			if (mouse_hover && menu_control && !global.midTransition && mouse_check_button_pressed(mb_left)) {
-				play_graph_sfx();
-				select = i+1;
+				var time = string_replace_all(string(global.cleared_levels[i][2][0]) + ":" + string_format(global.cleared_levels[i][2][1], 2, 0) + ":" + string_format(global.cleared_levels[i][2][2], 2, 0), " ", "0");							
+				level_shade_curve_pos[i] = draw_level_item_blue(xx, yy, txt,time, level_buttons[i], curveStruct, level_shade_curve_pos[i], menu_shade_curve_speed, uni_shade, menu_shade, mouse_hover, min_scale, max_scale, scale_spd);
+				if (mouse_hover && menu_control && !global.midTransition && mouse_check_button_pressed(mb_left)) {
+					play_graph_sfx();
+					select = i+1;
+				}
+			}
+			else if (i >= num_levels/2 && obj_camera.cameraX == 1920 && menu_control) {
+			
+				level_buttons[i].y = yy - 25;
+				level_buttons[i].wl = xx - 25;
+				level_buttons[i].wr = xx + 25;
+				level_buttons[i].h = gap/2;
+			
+				var mouse_hover = mouse_y > level_buttons[i].y && mouse_y < level_buttons[i].y + 
+											level_buttons[i].h && mouse_x < level_buttons[i].wr && mouse_x > level_buttons[i].wl;
+										
+				var time = string_replace_all(string(global.cleared_levels[i][2][0]) + ":" + string_format(global.cleared_levels[i][2][1], 2, 0) + ":" + string_format(global.cleared_levels[i][2][2], 2, 0), " ", "0");							
+				level_shade_curve_pos[i] = draw_level_item_blue(xx, yy, txt,time, level_buttons[i], curveStruct, level_shade_curve_pos[i], menu_shade_curve_speed, uni_shade, menu_shade, mouse_hover, min_scale, max_scale, scale_spd);
+				if (mouse_hover && menu_control && !global.midTransition && mouse_check_button_pressed(mb_left)) {
+					play_graph_sfx();
+					select = i+1;
+				}
+			}
+			else {
+				draw_set_color($FFEEAA);
+				draw_text(xx, yy, txt);
 			}
 		}
-
 	}
+	// create next button
+	var xx = menu_x + 450;
+	var yy = menu_y+90;
+	next_button.y = yy - sprite_get_height(spr_arrowbig)/2;
+	next_button.wl = xx - sprite_get_width(spr_arrowbig)/2;
+	next_button.wr = xx + sprite_get_width(spr_arrowbig)/2;
+	next_button.h = sprite_get_height(spr_arrowbig);
+
+	var mouse_hover = mouse_y > next_button.y && mouse_y < next_button.y + 
+								next_button.h && mouse_x < next_button.wr && mouse_x > next_button.wl;
+		
+	next_shade_curve_pos = draw_next_arrow(xx, yy, spr_arrowbig, next_button, curveStruct, next_shade_curve_pos, menu_shade_curve_speed, uni_shade, menu_shade, mouse_hover, min_scale, max_scale, scale_spd);
+		
+	if (mouse_hover && menu_control && !global.midTransition) {
+		if (mouse_check_button_pressed(mb_left)) { // click to select
+				play_menu_select_sfx();
+				menu_control = false;
+				select = -2;
+		}
+	}
+	
+	
+	// create back button
+	var xx = menu_x - 450 + 1920;
+	var yy = menu_y+90;
+	next_button.y = yy - sprite_get_height(spr_arrowbigleft)/2;
+	next_button.wl = xx - sprite_get_width(spr_arrowbigleft)/2;
+	next_button.wr = xx + sprite_get_width(spr_arrowbigleft)/2;
+	next_button.h = sprite_get_height(spr_arrowbigleft);
+
+	var mouse_hover = mouse_y > next_button.y && mouse_y < next_button.y + 
+								next_button.h && mouse_x < next_button.wr && mouse_x > next_button.wl;
+		
+	next_shade_curve_pos = draw_next_arrow(xx, yy, spr_arrowbigleft, next_button, curveStruct, next_shade_curve_pos, menu_shade_curve_speed, uni_shade, menu_shade, mouse_hover, min_scale, max_scale, scale_spd);
+		
+	if (mouse_hover && menu_control && !global.midTransition) {
+		if (mouse_check_button_pressed(mb_left)) { // click to select
+				play_menu_select_sfx();
+				menu_control = false;
+				select = -1;
+		}
+	}
+	
+	
 	draw_set_font(MenuFont);
 }
+
+
+
 else {
 	var gap = 120;
 	

@@ -2,7 +2,12 @@
 view_enabled = true;
 view_visible[0] = true;
 
-cameraX = 0;
+if (room == room_levelselect && global.level > obj_menu.num_levels/2) {
+	cameraX = 1920;
+}
+else {
+	cameraX = 0;
+}
 cameraY = 0;
 
 camera_set_view_size(view_camera[0], cameraWidth, cameraHeight);

@@ -63,6 +63,30 @@ else if (room == room_levelselect) {
 		global.level = select;
 		transition_start(room_level, sq_fadeout, sq_fadein);	
 	}
+	if (select == -1) {
+		if (camera_curve_pos[0] > 0) {
+			camera_curve_pos[0] -= camera_curve_speed;	
+		}
+		else {
+			menu_control = true;	
+		}
+		var curveChannel = animcurve_get_channel(curveStruct, "EaseBack");
+		var val = animcurve_channel_evaluate(curveChannel, camera_curve_pos[0]);
+		obj_camera.cameraX = val * obj_camera.cameraXTo;
+		camera_set_view_pos(view_camera[0], obj_camera.cameraX, obj_camera.cameraY);	
+	}
+	else if (select == -2) { // 2nd screen for level select
+		if (camera_curve_pos[0] < 1) {
+			camera_curve_pos[0] += camera_curve_speed;	
+		}
+		else {
+			menu_control = true;	
+		}
+		var curveChannel = animcurve_get_channel(curveStruct, "EaseIn");
+		var val = animcurve_channel_evaluate(curveChannel, camera_curve_pos[0]);
+		obj_camera.cameraX = val * obj_camera.cameraXTo;
+		camera_set_view_pos(view_camera[0], obj_camera.cameraX, obj_camera.cameraY);	
+	}
 }
 
 else { // level room
