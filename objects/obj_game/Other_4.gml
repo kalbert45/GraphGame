@@ -82,6 +82,14 @@ if (room != room_start && room != room_levelselect) {
 			graph = create_level27(); break;
 		case 28:
 			graph = create_level28(); break;
+		case 29:
+			graph = create_level29(); break;
+		case 30:
+			graph = create_level30(); break;
+		case 31:
+			graph = create_level31(); break;
+		case 32:
+			graph = create_level32(); break;
 		default:
 			graph = ds_map_create();
 	}
