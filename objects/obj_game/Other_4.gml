@@ -90,6 +90,62 @@ if (room != room_start && room != room_levelselect) {
 			graph = create_level31(); break;
 		case 32:
 			graph = create_level32(); break;
+		case 33:
+			graph = create_level33(); break;
+		case 34:
+			graph = create_level34(); break;
+		case 35:
+			graph = create_level35(); break;
+		case 36:
+			graph = create_level36(); break;
+		case 37:
+			graph = create_level37(); break;
+		case 38:
+			graph = create_level38(); break;
+		case 39:
+			graph = create_level39(); break;
+		case 40:
+			graph = create_level40(); break;
+		case 41:
+			graph = create_level41(); break;
+		case 42:
+			graph = create_level42(); break;
+		case 43:
+			graph = create_level43(); break;
+		case 44:
+			graph = create_level44(); break;
+		case 45:
+			graph = create_level45(); break;
+		case 46:
+			graph = create_level46(); break;
+		case 47:
+			graph = create_level47(); break;
+		case 48:
+			graph = create_level48(); break;
+		case 49:
+			graph = create_level49(); break;
+		case 50:
+			graph = create_level50(); break;
+		case 51:
+			graph = create_level51(); break;
+		case 52:
+			graph = create_level52(); break;
+		case 53:
+			graph = create_level53(); break;
+		case 54:
+			graph = create_level54(); break;
+		case 55:
+			graph = create_level55(); break;
+		case 56:
+			graph = create_level56(); break;
+		case 57:
+			graph = create_level57(); break;
+		case 58:
+			graph = create_level58(); break;
+		case 59:
+			graph = create_level59(); break;
+		case 60:
+			graph = create_level60(); break;
 		default:
 			graph = ds_map_create();
 	}

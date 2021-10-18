@@ -2,7 +2,7 @@
 // You can write your code in this editor
 transition_place_sequence(sq_fadein);
 
-file_delete("savedata.save");
+//file_delete("savedata.save");
 if (file_exists("savedata.save")) {
 	var _buffer = buffer_load("savedata.save");
 	var _string = buffer_read(_buffer, buffer_string);

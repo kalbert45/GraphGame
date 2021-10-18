@@ -5,12 +5,12 @@ if (room == room_level) {
 		draw_set_font(TutorialFont);
 		draw_set_color(c_white);
 		var xx = 960;
-		var yy = 200;
+		var yy = 230;
 		var txt = "Click or drag to connect stars"
 		draw_text(xx, yy, txt);
 		
 		var xx = 960;
-		var yy = 720;
+		var yy = 750;
 		var txt = "Draw all lines to solve the puzzle"
 		draw_text(xx, yy, txt);
 	}
