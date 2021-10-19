@@ -19,12 +19,12 @@ if (room == room_level) {
 		draw_set_color(c_white);
 		var xx = 960;
 		var yy = 260;
-		var txt = "Right click to erase lines"
+		var txt = "You can right click to erase lines"
 		draw_text(xx, yy, txt);
 		
 		var xx = 960;
 		var yy = 840;
-		var txt = "Press 'R' to reset the puzzle"
+		var txt = "Or press 'R' to reset the puzzle"
 		draw_text(xx, yy, txt);
 	}
 	if (obj_menu.current_level == 5) {
