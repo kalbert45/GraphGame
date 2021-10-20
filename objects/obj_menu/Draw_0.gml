@@ -375,11 +375,11 @@ else if (room == room_levelselect) {
 				clear_count = 8*j;	
 			}
 		}
-		//if (clear_count < 8*j) { // draw grey level
-		//	draw_set_color(c_dkgrey);
-	//		draw_text(xx, yy, txt);
-	//	}
-		if (global.cleared_levels[i][0]) { // draw yellow level
+		if (clear_count < 8*j) { // draw grey level
+			draw_set_color(c_dkgrey);
+			draw_text(xx, yy, txt);
+		}
+		else if (global.cleared_levels[i][0]) { // draw yellow level
 			clear_count++;	
 			
 			if (i < num_levels/2 && obj_camera.cameraX == 0 && menu_control) {

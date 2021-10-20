@@ -1,33 +1,52 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function create_level24(){
-	obj_game.win_num = 17;
+	obj_game.win_num = 14;
 	obj_game.win_con = "hamiltonian";
 	
 	var graph = graph_create();
 
-	for (var i = 0; i < 16; i++) {
-		graph_add_node(graph, 960+ lengthdir_x(300, 11.25 + 22.5*i), 490+ lengthdir_y(300, 11.25+22.5*i), i);	
-	}
-	graph_add_node(graph, 960, 490, 16);
+	graph_add_node(graph, 660, 190, 0);
+	graph_add_node(graph, 1260, 190, 1);
+	graph_add_node(graph, 1260, 790, 2);
+	graph_add_node(graph, 660, 790, 3);
+	graph_add_node(graph, 860, 740, 4);
+	graph_add_node(graph, 1160, 690, 5);
+	graph_add_node(graph, 710, 590, 6);
+	graph_add_node(graph, 760, 290, 7);
+	graph_add_node(graph, 1060, 240, 8);
+	graph_add_node(graph, 1210, 390, 9);
+	graph_add_node(graph, 1010, 540, 10);
+	graph_add_node(graph, 910, 540, 11);
+	graph_add_node(graph, 910, 440, 12);
+	graph_add_node(graph, 1010, 440, 13);
 
-	
-	for (var i=0; i < 16; i++) {
-		if (i == 3) {
-			continue;	
-		}
-		graph_add_edge(graph, i, (i+1) mod 16);	
-	}
-	graph_add_edge(graph, 0, 4);
-	graph_add_edge(graph, 1, 16);
-	graph_add_edge(graph, 2, 13);
-	graph_add_edge(graph, 3, 7);
+	graph_add_edge(graph, 0, 1);
+	graph_add_edge(graph, 0, 8);
+	graph_add_edge(graph, 1, 2);
+	graph_add_edge(graph, 2, 3);
+	graph_add_edge(graph, 3, 0);
+	graph_add_edge(graph, 0, 7);
+	graph_add_edge(graph, 7, 12);
+	graph_add_edge(graph, 10, 12);
 	graph_add_edge(graph, 5, 10);
-	graph_add_edge(graph, 6, 16);
-	graph_add_edge(graph, 8, 12);
-	graph_add_edge(graph, 9, 14);
-	graph_add_edge(graph, 11,15);
-
+	graph_add_edge(graph, 5, 2);
+	graph_add_edge(graph, 3, 6);
+	graph_add_edge(graph, 3, 4);
+	graph_add_edge(graph, 4, 11);
+	graph_add_edge(graph, 6, 11);
+	graph_add_edge(graph, 7, 6);
+	graph_add_edge(graph, 10, 11);
+	graph_add_edge(graph, 11, 12);
+	graph_add_edge(graph, 4, 5);
+	graph_add_edge(graph, 1, 8);
+	graph_add_edge(graph, 1, 9);
+	graph_add_edge(graph, 7, 8);
+	graph_add_edge(graph, 5, 9);
+	graph_add_edge(graph, 8, 13);
+	graph_add_edge(graph, 9, 13);
+	graph_add_edge(graph, 13, 12);
+	graph_add_edge(graph, 10, 13);
 	
 	return graph;
 }

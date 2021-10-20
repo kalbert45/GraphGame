@@ -1,78 +1,58 @@
-// 45-planar
+// Script assets have changed for v2.3.0 see
+// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function create_level48(){
-	obj_game.win_num = 44;
-	obj_game.win_con = "hamiltonian";
-	//obj_game.max_degree = 2;
+	obj_game.win_num = 60;
+	obj_game.win_con = "euler";
+	obj_game.max_degree = 4;
 	
 	var graph = graph_create();
 
-	graph_add_node(graph, 960, 490, 0);
-	for (var i = 0; i < 8; i++) {
-		graph_add_node(graph, 960 + lengthdir_x(100, 22.5+45*i), 490 +lengthdir_y(100, 22.5+45*i), i+1);	
-		
+
+	for (var i = 0; i < 10; i++) {
+		graph_add_node(graph, 960 + lengthdir_x(200, 36*i), 490 +lengthdir_y(200, 36*i), i);	
 	}
-	for (var i = 8; i < 16; i++) {
-		graph_add_node(graph, 960 + lengthdir_x(200, 22.5+45*i), 490 +lengthdir_y(200, 22.5+45*i), i+1);	
-		
+	for (var i = 0; i < 10; i++) {
+		graph_add_node(graph, 960 + lengthdir_x(200, 36*i)+lengthdir_x(50, 18+(72*((i) div 2))), 490 +lengthdir_y(200, 36*i)+lengthdir_y(50, 18+(72*((i) div 2))), i+10);	
+		graph_add_node(graph, 960 + lengthdir_x(200, 36*i)+lengthdir_x(100, 18+(72*((i) div 2))), 490 +lengthdir_y(200, 36*i)+lengthdir_y(100, 18+(72*((i) div 2))), i+20);	
+		graph_add_node(graph, 960 + lengthdir_x(200, 36*i)+lengthdir_x(150, 18+(72*((i) div 2))), 490 +lengthdir_y(200, 36*i)+lengthdir_y(150, 18+(72*((i) div 2))), i+30);	
+		graph_add_node(graph, 960 + lengthdir_x(200, 36*i)+lengthdir_x(200, 18+(72*((i) div 2))), 490 +lengthdir_y(200, 36*i)+lengthdir_y(200, 18+(72*((i) div 2))), i+40);	
+		graph_add_node(graph, 960 + lengthdir_x(200, 36*i)+lengthdir_x(250, 18+(72*((i) div 2))), 490 +lengthdir_y(200, 36*i)+lengthdir_y(250, 18+(72*((i) div 2))), i+50);	
 	}
-	for (var i = 16; i < 26; i++) {
-		graph_add_node(graph, 960 + lengthdir_x(250, 18+36*(i-6)), 490 +lengthdir_y(250, 18+36*(i-6)), i+1);	
-		
+	for (var i = 60; i < 65; i++) {
+		graph_add_node(graph, 960 + lengthdir_x(240, 18+72*i), 490 +lengthdir_y(240, 18+72*i), i);	
 	}
-	for (var i = 26; i < 32; i++) {
-		graph_add_node(graph, 960 + lengthdir_x(360, 60*(i-2)), 490 +lengthdir_y(360, 60*(i-2)), i+1);	
-		
-	}
-	for (var i = 32; i < 38; i++) {
-		if (i != 33) {
-			graph_add_node(graph, 960 + lengthdir_x(360, 60*(i-2))+lengthdir_x(180, 120+60*(i-2)), 490 +lengthdir_y(360, 60*(i-2))+lengthdir_y(180, 120+60*(i-2)), i+1);		
+	for (var i = 65; i < 70; i++) {
+		graph_add_node(graph, 960 + lengthdir_x(390, 18+72*i), 490 +lengthdir_y(390, 18+72*i), i);	
+	}	
+
+	for (var i = 0; i < 10; i++) {
+		if (i % 2 == 0) {
+			graph_add_edge(graph, i, (i+7) mod 10);	
+			graph_add_edge(graph, i, ((i+1) mod 10)+10);
+			graph_add_edge(graph, i+10, ((i+1) mod 10)+20);
+			graph_add_edge(graph, i+30, ((i+1) mod 10)+40);
+			graph_add_edge(graph, i+40, ((i+1) mod 10)+50);
 		}
-	}
-	for (var i = 38; i < 44; i++) {
-		graph_add_node(graph, 960 + lengthdir_x(450, 60*(i-2)), 490 +lengthdir_y(450, 60*(i-2)), i+1);	
-		
-	}
-	
-	
-	
-
-	for (var i = 0; i < 8; i++) {
-		if (i != 1 && i != 2 && i != 5 && i != 6) {
-			graph_add_edge(graph, 0, i+1);
+		else {
+			graph_add_edge(graph, i, (i+3) mod 10);	
+			graph_add_edge(graph, i, ((i+9) mod 10)+10);	
+			graph_add_edge(graph, i+10, ((i+9) mod 10)+20);
+			graph_add_edge(graph, i+30, ((i+9) mod 10)+40);
+			graph_add_edge(graph, i+40, ((i+9) mod 10)+50);
+			graph_add_edge(graph, i+50, ((i+1) mod 10)+50);
 		}
-		if (i != 3 && i != 7) {
-			graph_add_edge(graph, i+1, ((i+1) mod 8)+1);
-		}
-		graph_add_edge(graph, i+9, i+1);
-		graph_add_edge(graph, i+9, i+18 + (i div 4));
-		graph_add_edge(graph, i+9, i+17 + (i div 4));
+		graph_add_edge(graph, i, i+10);	
+		graph_add_edge(graph, i+10, i+20);
+		graph_add_edge(graph, i+20, i+30);
+		graph_add_edge(graph, i+30, i+40);
+		graph_add_edge(graph, i+40, i+50);	
+		graph_add_edge(graph, i, (i div 2)+60);
+		graph_add_edge(graph, i+20, (i div 2)+60);
+		graph_add_edge(graph, i+30, (i div 2)+65);
+		graph_add_edge(graph, i+50, (i div 2)+65);
 	}
-	graph_add_edge(graph, 17, 26);
-	graph_add_edge(graph, 21, 22);
-	for (var i = 0; i < 6; i++) {
-		graph_add_edge(graph, i+39, ((i+1) mod 6)+39);	
-		graph_add_edge(graph, i+39, i+27);
-		if (i != 1) {
-			graph_add_edge(graph, i+33, i+27);
-			graph_add_edge(graph, i+33, ((i+1) mod 6)+27);
-		}
-	}
-	graph_add_edge(graph, 17, 33);
-	graph_add_edge(graph, 18, 28);
-	//graph_add_edge(graph, 19, 34);
-	graph_add_edge(graph, 20, 29);
-	graph_add_edge(graph, 21, 35);
-	graph_add_edge(graph, 22, 36);
-	graph_add_edge(graph, 23, 31);
-	graph_add_edge(graph, 24, 37);
-	graph_add_edge(graph, 25, 32);
-	graph_add_edge(graph, 26, 38);
+	//graph_add_edge(graph, 17, 6);
 
-
-	
-
-
-	//graph_add_edge(graph, 0, 2);
 	
 	return graph;
 }
