@@ -464,6 +464,17 @@ else if (room == room_levelselect) {
 			}
 		}
 	}
+	if (clear_count div 8 < 5) {
+		var j = clear_count div 8;
+		var txt = string(clear_count mod 8) + "/8"; 
+		var xx = menu_x - 450 + ((j div 3) * 1920) + 10.5*gap;
+		var yy = menu_y - 360 + 1.5*(j mod 3)*gap;
+		draw_set_color($D5F6FF);
+		draw_set_font(LevelFont);
+		draw_text(xx,yy,txt);
+	}
+	
+	
 	// create next button
 	var xx = menu_x + 450;
 	var yy = menu_y+90;
