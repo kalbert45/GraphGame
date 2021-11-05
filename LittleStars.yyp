@@ -79,6 +79,7 @@
     {"id":{"name":"create_levelx27","path":"scripts/create_levelx27/create_levelx27.yy",},"order":30,},
     {"id":{"name":"bell_Bflat_","path":"sounds/bell_Bflat_/bell_Bflat_.yy",},"order":4,},
     {"id":{"name":"graph_draw_act","path":"scripts/graph_draw_act/graph_draw_act.yy",},"order":2,},
+    {"id":{"name":"create_end","path":"scripts/create_end/create_end.yy",},"order":61,},
     {"id":{"name":"create_levelx37","path":"scripts/create_levelx37/create_levelx37.yy",},"order":52,},
     {"id":{"name":"create_levelx57","path":"scripts/create_levelx57/create_levelx57.yy",},"order":40,},
     {"id":{"name":"draw_arrowright_item","path":"scripts/draw_arrowright_item/draw_arrowright_item.yy",},"order":4,},
@@ -106,6 +107,7 @@
     {"id":{"name":"bell_Aflat_","path":"sounds/bell_Aflat_/bell_Aflat_.yy",},"order":3,},
     {"id":{"name":"create_levelx49","path":"scripts/create_levelx49/create_levelx49.yy",},"order":43,},
     {"id":{"name":"outbound_v","path":"scripts/outbound_v/outbound_v.yy",},"order":6,},
+    {"id":{"name":"room_end","path":"rooms/room_end/room_end.yy",},"order":3,},
     {"id":{"name":"create_levelx51","path":"scripts/create_levelx51/create_levelx51.yy",},"order":10,},
     {"id":{"name":"create_levelx11","path":"scripts/create_levelx11/create_levelx11.yy",},"order":18,},
     {"id":{"name":"create_levelx50","path":"scripts/create_levelx50/create_levelx50.yy",},"order":39,},
@@ -157,6 +159,7 @@
     {"roomId":{"name":"room_start","path":"rooms/room_start/room_start.yy",},},
     {"roomId":{"name":"room_levelselect","path":"rooms/room_levelselect/room_levelselect.yy",},},
     {"roomId":{"name":"room_level","path":"rooms/room_level/room_level.yy",},},
+    {"roomId":{"name":"room_end","path":"rooms/room_end/room_end.yy",},},
   ],
   "Folders": [
     {"folderPath":"folders/Sprites.yy","order":1,"resourceVersion":"1.0","name":"Sprites","tags":[],"resourceType":"GMFolder",},

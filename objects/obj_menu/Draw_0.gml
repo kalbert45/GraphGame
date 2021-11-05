@@ -523,42 +523,53 @@ else if (room == room_levelselect) {
 }
 
 
-
-else {
+// level room
+else if (room == room_level) {
 	var gap = 120;
 	
 	draw_set_font(OptionsFont);
 	draw_set_color(c_white);
 	draw_text(95, 90, string(current_level));
 	
-	draw_set_font(MenuFont);
-	// make menu button
-	var txt = "MENU";
-	var xx = 100;
-	var yy = room_height/2 - 100;
-	back_button.y = yy - string_height(txt)/2;
-	back_button.wl = xx - string_width(txt)/2;
-	back_button.wr = xx + string_width(txt)/2;
-	back_button.h = string_height(txt);
+	if ((obj_game.num_cleared_levels == num_levels - 1) && global.cleared) {
+		draw_set_font(MenuFont);
+		draw_set_color(c_dkgrey);
+		// disarm menu button
+		var txt = "MENU";
+		var xx = 100;
+		var yy = room_height/2 - 100;
+		draw_text(xx, yy, txt);
+	}
+	else {
+		draw_set_font(MenuFont);
+		// make menu button
+		var txt = "MENU";
+		var xx = 100;
+		var yy = room_height/2 - 100;
+		back_button.y = yy - string_height(txt)/2;
+		back_button.wl = xx - string_width(txt)/2;
+		back_button.wr = xx + string_width(txt)/2;
+		back_button.h = string_height(txt);
 	
-	var mouse_hover = mouse_y > back_button.y && mouse_y < back_button.y + 
-								back_button.h && mouse_x < back_button.wr && mouse_x > back_button.wl;
+		var mouse_hover = mouse_y > back_button.y && mouse_y < back_button.y + 
+									back_button.h && mouse_x < back_button.wr && mouse_x > back_button.wl;
 	
-	back_shade_curve_pos = draw_menu_item(xx, yy, txt, back_button, curveStruct, back_shade_curve_pos, menu_shade_curve_speed, uni_shade, menu_shade, mouse_hover, min_scale, max_scale, scale_spd);
+		back_shade_curve_pos = draw_menu_item(xx, yy, txt, back_button, curveStruct, back_shade_curve_pos, menu_shade_curve_speed, uni_shade, menu_shade, mouse_hover, min_scale, max_scale, scale_spd);
 	
-	if (mouse_hover && menu_control && !global.midTransition) {
-		if (mouse_check_button_pressed(mb_left)) { // click to select
-				play_menu_select_sfx();
-				menu_control = false;
-				pause_time = true;
-				//transition_place_sequence(Sequence3);
-				select = 0;
-				//instance_deactivate_all(true);
-				//global.level = 0;
-				//transition_start(room_start, sq_fadeout, sq_fadein);
+		if (mouse_hover && menu_control && !global.midTransition) {
+			if (mouse_check_button_pressed(mb_left)) { // click to select
+					play_menu_select_sfx();
+					menu_control = false;
+					pause_time = true;
+					//transition_place_sequence(Sequence3);
+					select = 0;
+					//instance_deactivate_all(true);
+					//global.level = 0;
+					//transition_start(room_start, sq_fadeout, sq_fadein);
+			}
 		}
 	}
-	
+	// timer in menu screen
 	if (!global.cleared) {
 		draw_set_font(TimerFont);
 		draw_set_halign(fa_left);
@@ -582,7 +593,7 @@ else {
 	var sub_mouse_hover = mouse_y > options_button_menu[0].y && mouse_y < options_button_menu[0].y + 
 								options_button_menu[0].h && mouse_x < options_button_menu[0].wr && mouse_x > options_button_menu[0].wl;
 	
-	// draw submenu item
+	// draw menu item 'continue'
 	submenu_shade_curve_pos[0] = draw_menu_item(sub_xx, sub_yy, sub_txt, options_button_menu[0], curveStruct, submenu_shade_curve_pos[0], menu_shade_curve_speed, uni_shade, menu_shade, sub_mouse_hover, min_scale, max_scale, scale_spd);
 	if (sub_mouse_hover && menu_control) {
 		if (mouse_check_button_pressed(mb_left)) {
@@ -696,9 +707,32 @@ else {
 		draw_text(xx, yy, txt);	
 		draw_set_font(MenuFont);
 		
+		if (obj_game.num_cleared_levels == num_levels - 1) {
+			// make end screen button	
+			draw_set_font(MenuFont);
+			var txt = "END";
+			var xx = room_width - 150;
+			var yy = room_height/2 - 100;
+			next_button.y = yy - sprite_get_height(spr_arrowbig)/2;
+			next_button.wl = xx - string_width(txt)/2;
+			next_button.wr = xx + string_width(txt)/2 + sprite_get_width(spr_arrowbig) + 40;
+			next_button.h = sprite_get_height(spr_arrowbig);
+
+			var mouse_hover = mouse_y > next_button.y && mouse_y < next_button.y + 
+										next_button.h && mouse_x < next_button.wr && mouse_x > next_button.wl;
 		
-		if (clear_count < 8) {
-			// make next level button
+			next_shade_curve_pos = draw_next_item(xx, yy, txt, spr_arrowbig, next_button, curveStruct, next_shade_curve_pos, menu_shade_curve_speed, uni_shade, menu_shade, mouse_hover, min_scale, max_scale, scale_spd, next_alpha_curve_pos);
+		
+			if (mouse_hover && menu_control && !global.midTransition) {
+				if (mouse_check_button_pressed(mb_left)) { // click to select
+						play_menu_select_sfx();
+						menu_control = false;
+						transition_start(room_end, sq_fadeout, sq_fadein);
+				}
+			}
+		}
+		else if (clear_count < 8 || obj_menu.current_level == num_levels) {
+			// make exit button
 			draw_set_font(MenuFont);
 			var txt = "EXIT";
 			var xx = room_width - 150;
@@ -744,6 +778,46 @@ else {
 						global.level++;
 						transition_start(room_level, sq_fadeout, sq_fadein);
 				}
+			}
+		}
+	}
+}
+// end room
+else {
+	draw_set_font(TitleFont);
+	draw_set_color($D5F6FF);
+	var txt = "Thanks for\nplaying!";
+	var xx = room_width/2;
+	var yy = room_height/2 - 75;
+	draw_text(xx, yy, txt);
+	
+	
+	if (global.cleared) {
+		next_alpha_curve_pos = clamp(next_alpha_curve_pos, 0, 1);
+		next_alpha_curve_pos += 0.01;
+		
+		draw_set_alpha(next_alpha_curve_pos);
+		
+		// make exit button
+		draw_set_font(MenuFont);
+		var txt = "EXIT";
+		var xx = room_width - 150;
+		var yy = room_height - 100;
+		next_button.y = yy - string_height(txt)/2;
+		next_button.wl = xx - string_width(txt)/2;
+		next_button.wr = xx + string_width(txt)/2;
+		next_button.h = string_height(txt);
+
+		var mouse_hover = mouse_y > next_button.y && mouse_y < next_button.y + 
+									next_button.h && mouse_x < next_button.wr && mouse_x > next_button.wl;
+		
+		next_shade_curve_pos = draw_exit_item(xx, yy, txt, next_button, curveStruct, next_shade_curve_pos, menu_shade_curve_speed, uni_shade, menu_shade, mouse_hover, min_scale, max_scale, scale_spd, next_alpha_curve_pos);
+		
+		if (mouse_hover && menu_control && !global.midTransition) {
+			if (mouse_check_button_pressed(mb_left)) { // click to select
+					play_menu_select_sfx();
+					menu_control = false;
+					transition_start(room_levelselect, sq_fadeout, sq_fadein);
 			}
 		}
 	}

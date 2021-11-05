@@ -24,7 +24,10 @@ act_line = ds_list_create(); // points on activated line
 act_edge_count = 0; // number of activated edges
 
 // create level
-if (room != room_start && room != room_levelselect) {
+if (room == room_end) {
+	graph = create_end();
+}
+else if (room == room_level) {
 	switch (global.level) {
 		case 1:
 			graph = create_level1(); break;
