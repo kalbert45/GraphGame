@@ -4,6 +4,7 @@
     {"id":{"name":"TimerFont","path":"fonts/TimerFont/TimerFont.yy",},"order":5,},
     {"id":{"name":"MenuFont","path":"fonts/MenuFont/MenuFont.yy",},"order":0,},
     {"id":{"name":"sq_fadein","path":"sequences/sq_fadein/sq_fadein.yy",},"order":1,},
+    {"id":{"name":"obj_achievements","path":"objects/obj_achievements/obj_achievements.yy",},"order":9,},
     {"id":{"name":"create_levelx44","path":"scripts/create_levelx44/create_levelx44.yy",},"order":54,},
     {"id":{"name":"room_start","path":"rooms/room_start/room_start.yy",},"order":1,},
     {"id":{"name":"spr_background","path":"sprites/spr_background/spr_background.yy",},"order":1,},

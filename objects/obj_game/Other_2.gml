@@ -4,7 +4,8 @@ transition_place_sequence(sq_fadein);
 
 num_cleared_levels = 0;
 
-//file_delete("savedata.save");
+//file_delete("savedata.sav");
+//file_delete("localsavedata.save");
 if (file_exists("savedata.sav")) {
 	var _buffer = buffer_load("savedata.sav");
 	var _string = buffer_read(_buffer, buffer_string);
